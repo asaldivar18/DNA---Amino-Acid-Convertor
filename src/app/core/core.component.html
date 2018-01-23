@@ -1,0 +1,16 @@
+<textarea rows="4" cols="70" [(ngModel)]="dna">
+</textarea>
+
+<br>
+<button (click) ="check()">String Cleanup</button>
+<button (click) = "dnarna()">Dna <-> Rna</button>
+<button (click) = "reverse()">Reverse</button>
+<button (click) = "complement()">Complement</button>
+<button (click) = "reverseComplement()">Reverse and Complement</button>
+<p>{{sequence.check(dna)}}</p>
+<p>{{sequence.dnarna(dna)}}</p>
+<p>{{sequence.reverseSeq(dna)}}</p>
+<p>{{sequence.complementSeq(dna)}}</p>
+<p>{{sequence.reverseComplement(dna)}}</p>
+
+
