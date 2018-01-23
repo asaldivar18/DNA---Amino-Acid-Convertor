@@ -2,15 +2,15 @@
 </textarea>
 
 <br>
-<button (click) ="check()">String Cleanup</button>
+<button (click) ="stringCleanup()">String Cleanup</button>
 <button (click) = "dnarna()">Dna <-> Rna</button>
 <button (click) = "reverse()">Reverse</button>
 <button (click) = "complement()">Complement</button>
 <button (click) = "reverseComplement()">Reverse and Complement</button>
-<p>{{sequence.check(dna)}}</p>
-<p>{{sequence.dnarna(dna)}}</p>
-<p>{{sequence.reverseSeq(dna)}}</p>
-<p>{{sequence.complementSeq(dna)}}</p>
-<p>{{sequence.reverseComplement(dna)}}</p>
+<p>String Cleanup:{{sequence.check(dna)}}</p>
+<p>Dna <-> RNA: {{sequence.dnarna(dna)}}</p>
+<p>Reverse Sequence:{{sequence.reverseSeq(dna)}}</p>
+<p>Complement Sequence:{{sequence.complementSeq(dna)}}</p>
+<p>Reverse Complement:{{sequence.reverseComplement(dna)}}</p>
 
 

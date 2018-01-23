@@ -12,14 +12,12 @@ export class Sequence {
     reverse: string;
     complement: string;
     reversecomplement: string;
+    baseCount: Basecount;
 
-        constructor() {
-        // this.errors = this.check();
-        // this.rnadna = this.dnarna();
-        // this.reverse = this.reverseSeq();
-        // this.complement = this.complementSeq();
-        // this.reversecomplement = this.reverseComplement();
-        }
+
+    constructor() {
+    }
+
     check(sequence) {
         const input = sequence.split('\n');
         let i = 0;
@@ -54,7 +52,7 @@ export class Sequence {
                 })
                 .join('');
       return input;
-            }
+      }
     reverseSeq(sequence) {
       const input = sequence.split('').reverse().join('');
       return input;
@@ -74,9 +72,9 @@ export class Sequence {
             })
             .join('');
     return input;
-          }
-          reverseComplement(sequence) {
+    }
+    reverseComplement(sequence) {
             const tmpDna = this.reverseSeq(sequence);
             return this.complementSeq(tmpDna);
-          }
+    }
 }
