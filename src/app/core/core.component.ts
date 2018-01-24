@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Sequence } from '../sequence';
-
+import { Basecount } from '../basecount';
 
 @Component({
   selector: 'app-core',
@@ -10,12 +10,14 @@ import { Sequence } from '../sequence';
 export class CoreComponent implements OnInit {
   dna: string;
   sequence: Sequence;
+  basecount: Basecount;
 
 
   constructor() {
   }
   ngOnInit() {
     this.sequence = new Sequence();
+    this.basecount = new Basecount();
   }
 
   stringCleanup() {

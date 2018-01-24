@@ -14,3 +14,11 @@
 <p>Reverse Complement:{{sequence.reverseComplement(dna)}}</p>
 
 
+<button (click) = "basecount.updateBaseCount(dna)">Base Count</button>
+<p>A count: {{basecount.aCount}}</p>
+<p>T count: {{basecount.tCount}}</p>
+<p>G count: {{basecount.gCount}}</p>
+<p>C count: {{basecount.cCount}}</p>
+<p>Total # AGTC: {{basecount.total}}</p>
+<p>Weak hydrogen bonds: {{basecount.weakH}}%</p>
+<p>Strong hydrogen bonds: {{basecount.strongH}}%</p>

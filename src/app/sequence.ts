@@ -12,11 +12,12 @@ export class Sequence {
     reverse: string;
     complement: string;
     reversecomplement: string;
-    baseCount: Basecount;
 
 
     constructor() {
     }
+
+
 
     check(sequence) {
         const input = sequence.split('\n');
