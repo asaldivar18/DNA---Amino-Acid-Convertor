@@ -19,6 +19,7 @@ export class Sequence {
     }
 
     check(sequence) {
+
         const input = sequence.split('\n');
         let i = 0;
         const list = [];
@@ -30,8 +31,11 @@ export class Sequence {
         });
         list.forEach(c => {
             input.splice(list[c], 1);
-            });
-      return input.join('\n')
+          });
+          
+      if(input.join('\n').match(/[^AUTCGautcg]/)){
+        if(confirm("There are invalid characters in the input")){
+            return input.join('\n')
                         .toUpperCase()
                         .replace(/^\>.*$/g, '')
                         .replace(/[0-9]/g, '')
@@ -40,9 +44,23 @@ export class Sequence {
                         .replace(/\s/g, '')
                         .replace(/[^a-zA-Z ]/g, '')
                         .replace(/[^AUTCG]/g, 'X'); // warning
-          }
+        } else {
+          return '';
+        }
+      }
+      return input.join('\n')
+                        .toUpperCase()
+                        .replace(/^\>.*$/g, '')
+                        .replace(/[0-9]/g, '')
+                        .replace(/<\/?[^>]+(>|$)/g , '')
+                        .replace(/\r?\n|\r/g, '')
+                        .replace(/\s/g, '')
+                        .replace(/[^a-zA-Z ]/g, '')
+                        .replace(/[^AUTCG]/g, 'X'); // warning  
+    }
 
     dnarna(sequence) {
+      sequence = this.check(sequence);
       const input = sequence.split('').map(function(el) {
                   switch (el) {
                     case 'T': return 'U';
@@ -54,11 +72,13 @@ export class Sequence {
       return input;
       }
     reverseSeq(sequence) {
+      sequence = this.check(sequence);
       const input = sequence.split('').reverse().join('');
       return input;
     }
 
     complementSeq(sequence) {
+      sequence = this.check(sequence);
       const input = sequence
             .split('')
             .map(function(el) {
@@ -72,9 +92,13 @@ export class Sequence {
             })
             .join('');
     return input;
-    }
+  }
+  
     reverseComplement(sequence) {
+      sequence = this.check(sequence);
             const tmpDna = this.reverseSeq(sequence);
             return this.complementSeq(tmpDna);
     }
+
+
 }

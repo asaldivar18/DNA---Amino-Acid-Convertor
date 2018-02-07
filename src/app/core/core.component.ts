@@ -9,6 +9,7 @@ import { Sequence } from '../sequence';
 })
 export class CoreComponent implements OnInit {
   dna: string;
+  dnaoutput: string;
   sequence: Sequence;
 
 
@@ -19,23 +20,23 @@ export class CoreComponent implements OnInit {
   }
 
   stringCleanup() {
-    this.dna = this.sequence.check(this.dna);
+    this.dnaoutput = this.sequence.check(this.dna);
   }
 
   dnarna() {
-    this.dna = this.sequence.dnarna(this.dna);
+    this.dnaoutput = this.sequence.dnarna(this.dna);
   }
 
   reverse() {
-    this.dna = this.sequence.reverseSeq(this.dna);
+    this.dnaoutput = this.sequence.reverseSeq(this.dna);
   }
 
   complement() {
-    this.dna = this.sequence.complementSeq(this.dna);
+    this.dnaoutput = this.sequence.complementSeq(this.dna);
   }
 
   reverseComplement() {
-    this.dna = this.sequence.reverseComplement(this.dna);
+    this.dnaoutput = this.sequence.reverseComplement(this.dna);
   }
 
 }
