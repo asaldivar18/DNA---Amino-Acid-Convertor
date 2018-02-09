@@ -16,7 +16,10 @@ export class Sequence {
 
 
     constructor() {
+      
     }
+
+
 
     check(sequence) {
 
@@ -48,15 +51,7 @@ export class Sequence {
           return '';
         }
       }
-      return input.join('\n')
-                        .toUpperCase()
-                        .replace(/^\>.*$/g, '')
-                        .replace(/[0-9]/g, '')
-                        .replace(/<\/?[^>]+(>|$)/g , '')
-                        .replace(/\r?\n|\r/g, '')
-                        .replace(/\s/g, '')
-                        .replace(/[^a-zA-Z ]/g, '')
-                        .replace(/[^AUTCG]/g, 'X'); // warning  
+      return input.join('\n').toUpperCase().replace(/^\>.*$/g, '').replace(/[0-9]/g, '').replace(/<\/?[^>]+(>|$)/g , '').replace(/\r?\n|\r/g, '').replace(/\s/g, '').replace(/[^a-zA-Z ]/g, '').replace(/[^AUTCG]/g, 'X'); // warning  
     }
 
     dnarna(sequence) {
@@ -96,8 +91,8 @@ export class Sequence {
   
     reverseComplement(sequence) {
       sequence = this.check(sequence);
-            const tmpDna = this.reverseSeq(sequence);
-            return this.complementSeq(tmpDna);
+      const tmpDna = this.reverseSeq(sequence);
+      return this.complementSeq(tmpDna);
     }
 
 

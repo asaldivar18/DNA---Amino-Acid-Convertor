@@ -12,7 +12,7 @@ import { UserinputComponent } from './userinput/userinput.component';
   declarations: [
     AppComponent,
     CoreComponent,
-    UserinputComponent
+    UserinputComponent,
   ],
   imports: [
     BrowserModule,
