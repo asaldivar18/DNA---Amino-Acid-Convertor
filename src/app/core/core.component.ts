@@ -52,4 +52,8 @@ export class CoreComponent implements OnInit {
     this.dnaoutput = this.sequence.reverseComplement(this.dna);
   }
 
+  strToAmino() {
+    this.dnaoutput = this.sequence.strToAmino(this.dna);
+  }
+
 }
