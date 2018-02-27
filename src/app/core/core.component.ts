@@ -32,6 +32,7 @@ export class CoreComponent implements OnInit {
     this.basecount.getstrong_AVG();
     this.basecount.getweak_AVG();
   }
+  
   stringCleanup() {
     this.dnaoutput = this.sequence.check(this.dna);
   }
@@ -55,5 +56,22 @@ export class CoreComponent implements OnInit {
   strToAmino() {
     this.dnaoutput = this.sequence.strToAmino(this.dna);
   }
+
+  tenByTen(pack, line) {
+    this.dna = this.dnaoutput;
+    this.dnaoutput = this.sequence.check(this.dna);
+    this.dnaoutput = this.sequence.tenByTen(this.dnaoutput, pack, line);
+  }
+/*
+  sixByTen() {
+    this.dnaoutput = this.sequence.check(this.dna);
+    this.dnaoutput = this.sequence.sixByTen(this.dnaoutput);
+  }
+
+  tenByThree() {
+    this.dnaoutput = this.sequence.check(this.dna);
+    this.dnaoutput = this.sequence.tenByThree(this.dnaoutput);
+  }
+*/
 
 }

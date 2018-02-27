@@ -49,10 +49,10 @@ export class Sequence {
                     case 'U': return 'T';
                     default: return el;
                   }
-                })
-                .join('');
+      }).join('');
       return input;
-      }
+    }
+
     reverseSeq(sequence) {
       const input = sequence.split('').reverse().join('');
       return input;
@@ -73,17 +73,88 @@ export class Sequence {
             .join('');
     return input;
     }
+    
     reverseComplement(sequence) {
             const tmpDna = this.reverseSeq(sequence);
             return this.complementSeq(tmpDna);
     }
 
+    tenByTen(sequence, pack, line) {
+      let i = 1;
+      const input = sequence.split('').map(function(el) {
+        switch (el) {
+          default: 
+            if (i % line == 0) {
+              i++;
+              return el + '\n';
+            }
+            else if (i % pack == 0) {
+              i++;
+              return el + ' ';
+            }
+            else {
+              i++;
+              return el;
+            }
+          }
+      }).join('');
+      return input;
+    }
+/*
+    tenByThree(sequence) {
+      let i = 1;
+      let pack = 3;
+      let line = 30;
+      const input = sequence.split('').map(function(el) {
+        switch (el) {
+          default: 
+            if (i % line == 0) {
+              i++;
+              return el + '\n';
+            }
+            else if (i % pack == 0) {
+              i++;
+              return el + ' ';
+            }
+            else {
+              i++;
+              return el;
+            }
+          }
+      }).join('');
+      return input;
+    }
+
+    sixByTen(sequence) {
+      let i = 1;
+      let pack = 10;
+      let line = 60;
+      const input = sequence.split('').map(function(el) {
+        switch (el) {
+          default: 
+            if (i % line == 0) {
+              i++;
+              return el + '\n';
+            }
+            else if (i % pack == 0) {
+              i++;
+              return el + ' ';
+            }
+            else {
+              i++;
+              return el;
+            }
+          }
+      }).join('');
+      return input;
+    }
+*/
     strToAmino(sequence) {
-      const list = ["PHE ", "LEU ", "ILE", "MET", 
-                    "VAL ", "SER", "PRO", "THR",
-                    "ALA ", "TYR", "STOP", "HIS",
-                    "GLN ", "ASN", "LYS", "ASP",
-                    "GLU ", "CYS", "TRP", "ARG", "GLY"];
+      const list = ["Phe ", "Leu ", "Ile ", "Met ", 
+                    "Val ", "Ser ", "Pro ", "Thr ",
+                    "Ala ", "Tyr ", "Stop ", "His ",
+                    "Gln ", "Asn ", "Lys ", "Asp ",
+                    "Glu ", "Cys ", "Trp ", "Arg ", "Gly "];
                     /*sequence.split('').map(function(el)*/
                     /*sequence.upperCase.match(/[\s\S]{1,3}/g || [])*/
       const input = sequence.match(/[\s\S]{1,3}/g || []).map(

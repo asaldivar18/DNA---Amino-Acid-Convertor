@@ -56,6 +56,9 @@
         <div class="col-lg-3">
             <br />
             <br />
+
+           
+            
             <div class="btn-group-vertical">
                 <button class=" btn" (click)="stringCleanup()">String Cleanup</button>
                 <button class=" btn" (click)="dnarna()">Dna <-> Rna</button>
@@ -63,16 +66,36 @@
                 <button class=" btn" (click)="complement()">Complement</button>
                 <button class=" btn" (click)="reverseComplement()">Reverse and Complement</button>
                 <button class=" btn" (click)="strToAmino()">Generate Amino Acids</button>
+                <button class=" btn" (click)="stringCleanup(); tenByTen(10, 100)">10x10 Test</button>
+            <!--  
+                <button class=" btn" (click)="stringCleanup(); tenByThree()">10x3 Test</button>
+                <button class=" btn" (click)="stringCleanup(); sixByTen()">6x10 Test</button>
+            -->
+                <form>
+                    <fieldset id="packFormat">
+                        <input type="radio" name="format" value="1" checked> Pack Size: 1<br/>
+                        <input type="radio" name="format" value="3"> Pack Size: 3<br/>
+                        <input type="radio" name="format" value="10"> Pack Size: 10<br/>
+                    </fieldset>
+                    <fieldset id="breakFormat">
+                        <input type="radio" name="format2" value="30" checked> Break Line: 30<br/>
+                        <input type="radio" name="format2" value="50" > Break Line: 50<br/>
+                        <input type="radio" name="format2" value="60" > Break Line: 60<br/>  
+                        <input type="radio" name="format2" value="100" > Break Line: 100<br/> 
+                    </fieldset>
+                </form> 
             </div>
+        
+           
         </div>
         <div class="col-lg-9 row">
-                <div class="col-lg-6">
+                <div class="col-lg-9">
                     <label for="dnainput">Input</label>
                     <textarea class="form-control" name="dnainput" rows="10" cols="70" [(ngModel)]="dna" (keyup)="getBasecount()"></textarea>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-9">
                     <label for="dnaoutput">Output</label>
-                    <textarea class="form-control" name="dnaoutput" rows="10" cols="70" [(ngModel)]="dnaoutput"> </textarea>
+                    <textarea class="form-control" name="dnaoutput" rows="10" cols="70" [(ngModel)]="dnaoutput"></textarea>
                 </div>
         </div>
         <div>
