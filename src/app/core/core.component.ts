@@ -57,6 +57,10 @@ export class CoreComponent implements OnInit {
     this.dnaoutput = this.sequence.strToAmino(this.dna);
   }
 
+  strTo1mino() {
+    this.dnaoutput = this.sequence.strTo1mino(this.dna);
+  }
+
   tenByTen(pack, line) {
     this.dna = this.dnaoutput;
     this.dnaoutput = this.sequence.check(this.dna);
