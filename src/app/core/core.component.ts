@@ -14,12 +14,8 @@ export class CoreComponent implements OnInit {
   sequence: Sequence;
   basecount: Basecount;
 
-
-
   constructor() {
   }
-
-
 
   ngOnInit() {
     this.sequence = new Sequence();
@@ -61,21 +57,33 @@ export class CoreComponent implements OnInit {
     this.dnaoutput = this.sequence.strTo1mino(this.dna);
   }
 
-  tenByTen(pack, line) {
-    this.dna = this.dnaoutput;
+  format(pack, line) {
     this.dnaoutput = this.sequence.check(this.dna);
-    this.dnaoutput = this.sequence.tenByTen(this.dnaoutput, pack, line);
-  }
-/*
-  sixByTen() {
-    this.dnaoutput = this.sequence.check(this.dna);
-    this.dnaoutput = this.sequence.sixByTen(this.dnaoutput);
+    this.dnaoutput = this.sequence.format(this.dnaoutput, pack, line);
   }
 
-  tenByThree() {
-    this.dnaoutput = this.sequence.check(this.dna);
-    this.dnaoutput = this.sequence.tenByThree(this.dnaoutput);
+
+  pack() {
+    var format = document.forms[0];
+    var val;
+    for (var i = 0; i < format.length; i++) {
+        if (format[i].checked) {
+            val = format[i].value;
+        }
+    }
+    return val;
   }
-*/
+
+  line() {
+    var format2 = document.forms[1];
+    var val;
+    for (var i = 0; i < format2.length; i++) {
+        if (format2[i].checked) {
+            val = format2[i].value;
+        }
+    }
+    return val;
+  }
+
 
 }

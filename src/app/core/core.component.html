@@ -57,8 +57,9 @@
             <br />
             <br />
 
-           
-            
+          
+         
+
             <div class="btn-group-vertical">
                 <button class=" btn" (click)="stringCleanup()">String Cleanup</button>
                 <button class=" btn" (click)="dnarna()">Dna <-> Rna</button>
@@ -67,18 +68,17 @@
                 <button class=" btn" (click)="reverseComplement()">Reverse and Complement</button>
                 <button class=" btn" (click)="strToAmino()">Generate 3-key Amino Acids</button>
                 <button class=" btn" (click)="strTo1mino()">Generate 1-key Amino Acids</button>
-                <button class=" btn" (click)="stringCleanup(); tenByTen(10, 100)">10x10 Test</button>
-            <!--  
-                <button class=" btn" (click)="stringCleanup(); tenByThree()">10x3 Test</button>
-                <button class=" btn" (click)="stringCleanup(); sixByTen()">6x10 Test</button>
-            -->
+                <button class=" btn" (click)="format(pack(), line())">Format</button>
+        
                 <form>
-                    <fieldset id="packFormat">
+                    <fieldset>
                         <input type="radio" name="format" value="1" checked> Pack Size: 1<br/>
                         <input type="radio" name="format" value="3"> Pack Size: 3<br/>
                         <input type="radio" name="format" value="10"> Pack Size: 10<br/>
                     </fieldset>
-                    <fieldset id="breakFormat">
+                </form>
+                <form>
+                    <fieldset>
                         <input type="radio" name="format2" value="30" checked> Break Line: 30<br/>
                         <input type="radio" name="format2" value="50" > Break Line: 50<br/>
                         <input type="radio" name="format2" value="60" > Break Line: 60<br/>  

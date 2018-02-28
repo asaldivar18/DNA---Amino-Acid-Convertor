@@ -79,32 +79,8 @@ export class Sequence {
             return this.complementSeq(tmpDna);
     }
 
-    tenByTen(sequence, pack, line) {
+    format(sequence, pack, line) {
       let i = 1;
-      const input = sequence.split('').map(function(el) {
-        switch (el) {
-          default: 
-            if (i % line == 0) {
-              i++;
-              return el + '\n';
-            }
-            else if (i % pack == 0) {
-              i++;
-              return el + ' ';
-            }
-            else {
-              i++;
-              return el;
-            }
-          }
-      }).join('');
-      return input;
-    }
-/*
-    tenByThree(sequence) {
-      let i = 1;
-      let pack = 3;
-      let line = 30;
       const input = sequence.split('').map(function(el) {
         switch (el) {
           default: 
@@ -125,30 +101,6 @@ export class Sequence {
       return input;
     }
 
-    sixByTen(sequence) {
-      let i = 1;
-      let pack = 10;
-      let line = 60;
-      const input = sequence.split('').map(function(el) {
-        switch (el) {
-          default: 
-            if (i % line == 0) {
-              i++;
-              return el + '\n';
-            }
-            else if (i % pack == 0) {
-              i++;
-              return el + ' ';
-            }
-            else {
-              i++;
-              return el;
-            }
-          }
-      }).join('');
-      return input;
-    }
-*/
     strToAmino(sequence) {
       const list = ["Phe ", "Leu ", "Ile ", "Met ", 
                     "Val ", "Ser ", "Pro ", "Thr ",
@@ -246,11 +198,11 @@ export class Sequence {
     }
 
     strTo1mino(sequence) {
-      const list = ["F ", "L ", "I ", "Met ", 
-                    "V ", "S ", "P ", "T ",
-                    "A ", "Y ", "Stop ", "H ",
-                    "Q ", "N ", "K ", "D ",
-                    "E ", "C ", "W ", "R ", "G "];
+      const list = ["F", "L", "I", "M", 
+                    "V", "S", "P", "T",
+                    "A", "Y", "Stop", "H",
+                    "Q", "N", "K", "D",
+                    "E", "C", "W", "R", "G"];
                     /*sequence.split('').map(function(el)*/
                     /*sequence.upperCase.match(/[\s\S]{1,3}/g || [])*/
       const input = sequence.match(/[\s\S]{1,3}/g || []).map(
