@@ -7,8 +7,7 @@ li {
     padding: 2px;
 }
 
-
-/* Add a black background color to the top navigation */
+/* Add a background color to the top navigation */
 .topnav {
     background-color: #f26522;
     overflow: hidden;
@@ -52,4 +51,9 @@ body {
     background-color:#f26522;
     color: white;
     width: 250px;
+}
+
+.table {
+    margin:auto; 
+    border:2px solid black;
 }
