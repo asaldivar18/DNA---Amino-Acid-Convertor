@@ -102,6 +102,7 @@ export class Sequence {
     }
 
     strToAmino(sequence) {
+      sequence = this.check(sequence);
       const list = ["Phe ", "Leu ", "Ile ", "Met ", 
                     "Val ", "Ser ", "Pro ", "Thr ",
                     "Ala ", "Tyr ", "Stop ", "His ",
@@ -198,6 +199,7 @@ export class Sequence {
     }
 
     strTo1mino(sequence) {
+      sequence = this.check(sequence);
       const list = ["F", "L", "I", "M", 
                     "V", "S", "P", "T",
                     "A", "Y", "Stop", "H",
