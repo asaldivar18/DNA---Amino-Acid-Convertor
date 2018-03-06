@@ -46,7 +46,13 @@ export class Sequence {
       const input = sequence.split('').map(function(el) {
                   switch (el) {
                     case 'T': return 'U';
+<<<<<<< HEAD
                     case 'U': return 'T'; //showerrror
+=======
+                    case 'U': return 'T';
+                    case 't': return 'u';
+                    case 'u': return 't';
+>>>>>>> f598b8d0e49aaf87f4c29a0597bc63d2b84cf142
                     default: return el;
                   }
       }).join('');
@@ -78,6 +84,11 @@ export class Sequence {
                 case 'G': return 'C';
                 case 'C': return 'G';
                 case 'U': return 'A';
+                case 'a': return 't';
+                case 't': return 'a';
+                case 'g': return 'g';
+                case 'c': return 'c';
+                case 'u': return 'u';
               }
             })
             .join('');
