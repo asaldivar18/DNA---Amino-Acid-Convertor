@@ -46,12 +46,22 @@ export class Sequence {
       const input = sequence.split('').map(function(el) {
                   switch (el) {
                     case 'T': return 'U';
-                    case 'U': return 'T';
+                    case 'U': return 'T'; //showerrror
                     default: return el;
                   }
       }).join('');
       return input;
     }
+	
+	rnadna(sequence){
+		const input = sequence.split('').map(function(el){
+			switch(el){
+				case 'A': return 'U'
+				case 'G': return 'C'
+				case 'U': return 
+			}
+		}).join('');
+	}
 
     reverseSeq(sequence) {
       const input = sequence.split('').reverse().join('');
