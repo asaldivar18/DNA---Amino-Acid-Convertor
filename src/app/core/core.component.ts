@@ -50,11 +50,11 @@ export class CoreComponent implements OnInit {
   }
 
   strToAmino() {
-    this.dnaoutput = this.sequence.strToAmino(this.dna);
+    this.dnaoutput = this.sequence.strToAmino(this.dna, 0);
   }
 
   strTo1mino() {
-    this.dnaoutput = this.sequence.strTo1mino(this.dna);
+    this.dnaoutput = this.sequence.strToAmino(this.dna, 1);
   }
 
   format(pack, line) {
