@@ -122,194 +122,155 @@ export class Sequence {
       return input;
     }
 
-    strToAmino(sequence) {
+strToAmino(sequence, arg) {
+      var i = (arg == 0? 0 : 1);
       sequence = this.check(sequence);
-      const list = ["Phe ", "Leu ", "Ile ", "Met ", 
-                    "Val ", "Ser ", "Pro ", "Thr ",
-                    "Ala ", "Tyr ", "Stop ", "His ",
-                    "Gln ", "Asn ", "Lys ", "Asp ",
-                    "Glu ", "Cys ", "Trp ", "Arg ", "Gly "];
-                    /*sequence.split('').map(function(el)*/
-                    /*sequence.upperCase.match(/[\s\S]{1,3}/g || [])*/
+      const list = [
+      ["Phe ", "F"],
+      ["Leu ", "L"],
+      ["Ile " , "I"],
+      ["Met ", "M"],
+      ["Val ", "V"],
+      ["Ser ", "S"],
+      ["Pro ", "P"],
+      ["Thr ", "T"],
+      ["Ala ", "A"],
+      ["Tyr ", "Y"],
+      ["*** ", "*"],
+      ["His ", "H"],
+      ["Gln ", "Q"],
+      ["Asn ", "N"],
+      ["Lys ", "K"],
+      ["Asp ", "D"],
+      ["Glu ", "E"],
+      ["Cys ", "C"],
+      ["Trp ", "W"],
+      ["Arg ", "R"],
+      ["Gly ", "G"],
+      ];
+
       const input = sequence.match(/[\s\S]{1,3}/g || []).map(
             function(el) {
               switch (el) {
-                case 'UUU' : return list[0];
-                case 'UUC' : return list[0];
-                case 'UUA' : return list[1];
-                case 'UUG' : return list[1];
+                case 'UUU' : return list[0][i];
+                case 'TTT' : return list[0][i];
+                case 'UUC' : return list[0][i];
+                case 'TTC' : return list[0][i];
 
-                case 'CUU' : return list[1];
-                case 'CUC' : return list[1];
-                case 'CUA' : return list[1];
-                case 'CUG' : return list[1];
+                case 'UUA' : return list[1][i];
+                case 'TTA' : return list[1][i];
+                case 'UUG' : return list[1][i];
+                case 'TTG' : return list[1][i];
 
-                case 'AUU' : return list[2];
-                case 'AUC' : return list[2];
-                case 'AUA' : return list[2];
-                case 'AUG' : return list[3];
+                case 'CUU' : return list[1][i];
+                case 'CTT' : return list[1][i];
+                case 'CUC' : return list[1][i];
+                case 'CTC' : return list[1][i];
+                case 'CUA' : return list[1][i];
+                case 'CTA' : return list[1][i];
+                case 'CUG' : return list[1][i];
+                case 'CTG' : return list[1][i];
 
-                case 'GUU' : return list[4];
-                case 'GUC' : return list[4];
-                case 'GUA' : return list[4];
-                case 'GUG' : return list[4];
+                case 'AUU' : return list[2][i];
+                case 'ATT' : return list[2][i];
+                case 'AUC' : return list[2][i];
+                case 'ATC' : return list[2][i];
+                case 'AUA' : return list[2][i];
+                case 'ATA' : return list[2][i];
+                case 'AUG' : return list[3][i];
+                case 'ATG' : return list[3][i];
 
-                case 'UCU' : return list[5];
-                case 'UCC' : return list[5];
-                case 'UCA' : return list[5];
-                case 'UCG' : return list[5];
+                case 'GUU' : return list[4][i];
+                case 'GTT' : return list[4][i];
+                case 'GUC' : return list[4][i];
+                case 'GTC' : return list[4][i];
+                case 'GUA' : return list[4][i];
+                case 'GTA' : return list[4][i];
+                case 'GUG' : return list[4][i];
+                case 'GTG' : return list[4][i];
 
-                case 'CCU' : return list[6];
-                case 'CCC' : return list[6];
-                case 'CCA' : return list[6];
-                case 'CCG' : return list[6];
+                case 'UCU' : return list[5][i];
+                case 'TCT' : return list[5][i];
+                case 'UCC' : return list[5][i];
+                case 'TCC' : return list[5][i];
+                case 'UCA' : return list[5][i];
+                case 'TCA' : return list[5][i];
+                case 'UCG' : return list[5][i];
+                case 'TCG' : return list[5][i];
 
-                case 'ACU' : return list[7];
-                case 'ACC' : return list[7];
-                case 'ACA' : return list[7];
-                case 'ACG' : return list[7];
+                case 'CCU' : return list[6][i];
+                case 'CCT' : return list[6][i];
+                case 'CCC' : return list[6][i];
+                case 'CCA' : return list[6][i];
+                case 'CCG' : return list[6][i];
+
+                case 'ACU' : return list[7][i];
+                case 'ACT' : return list[8][i];
+                case 'ACC' : return list[7][i];
+                case 'ACA' : return list[7][i];
+                case 'ACG' : return list[7][i];
                 
-                case 'GCU' : return list[8];
-                case 'GCC' : return list[8];
-                case 'GCA' : return list[8];
-                case 'GCG' : return list[8];
+                case 'GCT' : return list[8][i];
+                case 'GCU' : return list[8][i];
+                case 'GCC' : return list[8][i];
+                case 'GCA' : return list[8][i];
+                case 'GCG' : return list[8][i];
 
-                case 'UAU' : return list[9];
-                case 'UAC' : return list[9];
-                case 'UAA' : return list[10];
-                case 'UAG' : return list[10];
+                case 'UAU' : return list[9][i];
+                case 'TAT' : return list[9][i];
+                case 'UAC' : return list[9][i];
+                case 'TAC' : return list[9][i];
+                case 'UAA' : return list[10][i];
+                case 'TAA' : return list[10][i];
+                case 'UAG' : return list[10][i];
+                case 'TAG' : return list[10][i];
 
-                case 'CAU' : return list[11];
-                case 'CAC' : return list[11];
-                case 'CAA' : return list[12];
-                case 'CAG' : return list[12];
+                case 'CAU' : return list[11][i];
+                case 'CAT' : return list[11][i];
+                case 'CAC' : return list[11][i];
+                case 'CAA' : return list[12][i];
+                case 'CAG' : return list[12][i];
 
-                case 'AAU' : return list[13];
-                case 'AAC' : return list[13];
-                case 'AAA' : return list[14];
-                case 'AAG' : return list[14];
+                case 'AAT' : return list[13][i];
+                case 'AAU' : return list[13][i];
+                case 'AAC' : return list[13][i];
+                case 'AAA' : return list[14][i];
+                case 'AAG' : return list[14][i];
 
-                case 'GAU' : return list[15];
-                case 'GAC' : return list[15];
-                case 'GAA' : return list[16];
-                case 'GAG' : return list[16];
+                case 'GAT' : return list[15][i];
+                case 'GAU' : return list[15][i];
+                case 'GAC' : return list[15][i];
+                case 'GAA' : return list[16][i];
+                case 'GAG' : return list[16][i];
 
-                case 'UGU' : return list[17];
-                case 'UGC' : return list[17];
-                case 'UGA' : return list[10];
-                case 'UGG' : return list[18];
+                case 'TGT' : return list[17][i];
+                case 'UGU' : return list[17][i];
+                case 'TGC' : return list[17][i];
+                case 'UGC' : return list[17][i];
+                case 'UGA' : return list[10][i];
+                case 'TGA' : return list[10][i];
+                case 'UGG' : return list[18][i];
+                case 'TGG' : return list[18][i];
        
-                case 'CGU' : return list[19];
-                case 'CGC' : return list[19];
-                case 'CGA' : return list[19];
-                case 'CGG' : return list[19];
+                case 'CGU' : return list[19][i];
+                case 'CGT' : return list[19][i];
+                case 'CGC' : return list[19][i];
+                case 'CGA' : return list[19][i];
+                case 'CGG' : return list[19][i];
 
-                case 'AGU' : return list[5];
-                case 'AGC' : return list[5];
-                case 'AGA' : return list[19];
-                case 'ACG' : return list[19];
+                case 'AGT' : return list[5][i];
+                case 'AGU' : return list[5][i];
+                case 'AGC' : return list[5][i];
+                case 'AGA' : return list[19][i];
+                case 'ACG' : return list[19][i];
 
-                case 'GGU' : return list[20];
-                case 'GGC' : return list[20];
-                case 'GGA' : return list[20];
-                case 'GGG' : return list[20];
-              }
-            }
-      ).join('');
-      return input;
-    }
-
-    strTo1mino(sequence) {
-      sequence = this.check(sequence);
-      const list = ["F", "L", "I", "M", 
-                    "V", "S", "P", "T",
-                    "A", "Y", "Stop", "H",
-                    "Q", "N", "K", "D",
-                    "E", "C", "W", "R", "G"];
-                    /*sequence.split('').map(function(el)*/
-                    /*sequence.upperCase.match(/[\s\S]{1,3}/g || [])*/
-      const input = sequence.match(/[\s\S]{1,3}/g || []).map(
-            function(el) {
-              switch (el) {
-                case 'UUU' : return list[0];
-                case 'UUC' : return list[0];
-                case 'UUA' : return list[1];
-                case 'UUG' : return list[1];
-
-                case 'CUU' : return list[1];
-                case 'CUC' : return list[1];
-                case 'CUA' : return list[1];
-                case 'CUG' : return list[1];
-
-                case 'AUU' : return list[2];
-                case 'AUC' : return list[2];
-                case 'AUA' : return list[2];
-                case 'AUG' : return list[3];
-
-                case 'GUU' : return list[4];
-                case 'GUC' : return list[4];
-                case 'GUA' : return list[4];
-                case 'GUG' : return list[4];
-
-                case 'UCU' : return list[5];
-                case 'UCC' : return list[5];
-                case 'UCA' : return list[5];
-                case 'UCG' : return list[5];
-
-                case 'CCU' : return list[6];
-                case 'CCC' : return list[6];
-                case 'CCA' : return list[6];
-                case 'CCG' : return list[6];
-
-                case 'ACU' : return list[7];
-                case 'ACC' : return list[7];
-                case 'ACA' : return list[7];
-                case 'ACG' : return list[7];
-                
-                case 'GCU' : return list[8];
-                case 'GCC' : return list[8];
-                case 'GCA' : return list[8];
-                case 'GCG' : return list[8];
-
-                case 'UAU' : return list[9];
-                case 'UAC' : return list[9];
-                case 'UAA' : return list[10];
-                case 'UAG' : return list[10];
-
-                case 'CAU' : return list[11];
-                case 'CAC' : return list[11];
-                case 'CAA' : return list[12];
-                case 'CAG' : return list[12];
-
-                case 'AAU' : return list[13];
-                case 'AAC' : return list[13];
-                case 'AAA' : return list[14];
-                case 'AAG' : return list[14];
-
-                case 'GAU' : return list[15];
-                case 'GAC' : return list[15];
-                case 'GAA' : return list[16];
-                case 'GAG' : return list[16];
-
-                case 'UGU' : return list[17];
-                case 'UGC' : return list[17];
-                case 'UGA' : return list[10];
-                case 'UGG' : return list[18];
-       
-                case 'CGU' : return list[19];
-                case 'CGC' : return list[19];
-                case 'CGA' : return list[19];
-                case 'CGG' : return list[19];
-
-                case 'AGU' : return list[5];
-                case 'AGC' : return list[5];
-                case 'AGA' : return list[19];
-                case 'ACG' : return list[19];
-
-                case 'GGU' : return list[20];
-                case 'GGC' : return list[20];
-                case 'GGA' : return list[20];
-                case 'GGG' : return list[20];
+                case 'GGT' : return list[20][i];
+                case 'GGU' : return list[20][i];
+                case 'GGC' : return list[20][i];
+                case 'GGA' : return list[20][i];
+                case 'GGG' : return list[20][i];
+                case 'AGG' : return list[19][i];
+                default : return "NULL "
               }
             }
       ).join('');
