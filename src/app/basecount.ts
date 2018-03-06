@@ -17,9 +17,9 @@ export class Basecount {
         this.weak_AVG=0;
     }
     
-    getweak_AVG(){this.weak_AVG= ((this.aCount +this.tCount) / (this.aCount +this.tCount +this.gCount +this.cCount)) * 100;};
+    getweak_AVG(){this.weak_AVG= Math.round(((this.aCount +this.tCount) / (this.aCount +this.tCount +this.gCount +this.cCount)) * 100)};
 
-    getstrong_AVG(){this.strong_AVG= ( (this.gCount +this.cCount) / (this.aCount +this.tCount +this.gCount +this.cCount)) * 100;}
+    getstrong_AVG(){this.strong_AVG= Math.round(( (this.gCount +this.cCount) / (this.aCount +this.tCount +this.gCount +this.cCount)) * 100)}
 
     countA(userinput){
         this.aCount=this.aCount
