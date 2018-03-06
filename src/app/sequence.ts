@@ -47,6 +47,8 @@ export class Sequence {
                   switch (el) {
                     case 'T': return 'U';
                     case 'U': return 'T';
+                    case 't': return 'u';
+                    case 'u': return 't';
                     default: return el;
                   }
       }).join('');
@@ -68,6 +70,11 @@ export class Sequence {
                 case 'G': return 'C';
                 case 'C': return 'G';
                 case 'U': return 'A';
+                case 'a': return 't';
+                case 't': return 'a';
+                case 'g': return 'g';
+                case 'c': return 'c';
+                case 'u': return 'u';
               }
             })
             .join('');
