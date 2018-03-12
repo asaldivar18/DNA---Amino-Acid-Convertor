@@ -56,7 +56,7 @@ export class Sequence {
       return input;
     }
 	
-	rnadna(sequence){
+	rna_dna(sequence){
 		const input = sequence.split('').map(function(el){
 			switch(el){
 				case 'A': return 'U'
@@ -202,7 +202,7 @@ strToAmino(sequence, arg) {
                 case 'CCG' : return list[6][i];
 
                 case 'ACU' : return list[7][i];
-                case 'ACT' : return list[8][i];
+                case 'ACT' : return list[7][i];
                 case 'ACC' : return list[7][i];
                 case 'ACA' : return list[7][i];
                 case 'ACG' : return list[7][i];
