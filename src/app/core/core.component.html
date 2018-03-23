@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-xs-2">
-            <img src="\assets\images\abmLogo.webp" alt="ABM" id="logo" />
+            <img src="\assets\images\abmLogo.png" alt="ABM" id="logo" />
         </div>
     </div>
 </div>
@@ -20,16 +20,17 @@
 
 <div class="container-fluid">
     <div class="row justify-content-center">
-        <div class="col-xs-2">                    
+        <div class="col-xs-2">
             <div class="btn-group-vertical">
                 <br/>
                 <button class=" btn" (click)="stringCleanup()">String Cleanup</button>
-                <button class=" btn" (click)="dnarna()">Dna <-> Rna</button>
+                <button class=" btn" (click)="dnarna()">DNA<->RNA</button>
                 <button class=" btn" (click)="reverse()">Reverse</button>
                 <button class=" btn" (click)="complement()">Complement</button>
                 <button class=" btn" (click)="reverseComplement()">Reverse and Complement</button>
                 <button class=" btn" (click)="strToAmino()">Generate 3-key Amino Acids</button>
                 <button class=" btn" (click)="strTo1mino()">Generate 1-key Amino Acids</button>
+                <button class=" btn" (click)="clearInput()">Clear All</button>
             </div>
         </div>
         <div class="col-xs-8" style="padding-left:20px; padding-right:20px;">
@@ -38,48 +39,48 @@
         </div>
         <div class="col-xs-2">
             <br/>
-                <table class="table">
-                    <tr>
-                        <td style="background-color : rgb(102,204,255)">
-                            <input class="" readonly name="aCount" value="{{basecount.aCount}}">
-                            <label class="lead" style="font-weight: bold " for="acount">A </label>
-                        </td>
-                        <td style="background-color:rgb(102,255,102)">
-                            <input class="" readonly name="gCount" value="{{basecount.gCount}}">
-                            <label class="lead" style="font-weight: bold " for="gcount">G </label>
-                        </td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td style="background-color:rgb(255,51,102)">
-                            <input class="" readonly name="tCount" value="{{basecount.tCount}}">
-                            <label class="lead" style="font-weight: bold " for="tcount">T </label>
-                        </td>
-                        <td style="background-color:rgb(255,255,0)">
-                            <input class="" readonly name=" cCount " value="{{basecount.cCount}} ">
-                            <label class="lead " style="font-weight: bold " for="acount ">C </label>
-                        </td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td style="background-color: rgb(255,51,255)">
-                            <input readonly name="weakAVG " value="{{basecount.weak_AVG}} ">
-                            <label class="lead " for="weakAVG ">%AT </label>
-                            <p class="lead ">(<b style="font-weight: bold ">W</b>eak-2H bonds)</p>
-            
-                        </td>
-                        <td style="background-color:rgb(204,255,51)">
-                            <input readonly name="strongAVG " value="{{basecount.strong_AVG}} ">
-                            <label class="lead " for="strongAVG ">%GC </label>
-                            <p class="lead ">(<b style="font-weight: bold ">S</b>trong-3H bonds)</p>
-                        </td>
-                        <td>
-                            <input readonly name="total " value="{{basecount.aCount +basecount.tCount +basecount.gCount +basecount.cCount}} ">
-                            <label class="lead " for="total ">total # ACGT</label>
-                            <p class="lead ">(a<b style="font-weight: bold ">N</b>y base)</p>
-                        </td>
-                    </tr>
-                </table> 
+            <table class="table">
+                <tr>
+                    <td style="background-color : rgb(102,204,255)">
+                        <input class="" readonly name="aCount" value="{{basecount.aCount}}">
+                        <label class="lead" style="font-weight: bold " for="acount">A </label>
+                    </td>
+                    <td style="background-color:rgb(102,255,102)">
+                        <input class="" readonly name="gCount" value="{{basecount.gCount}}">
+                        <label class="lead" style="font-weight: bold " for="gcount">G </label>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="background-color:rgb(255,51,102)">
+                        <input class="" readonly name="tCount" value="{{basecount.tCount}}">
+                        <label class="lead" style="font-weight: bold " for="tcount">T </label>
+                    </td>
+                    <td style="background-color:rgb(255,255,0)">
+                        <input class="" readonly name=" cCount " value="{{basecount.cCount}} ">
+                        <label class="lead " style="font-weight: bold " for="acount ">C </label>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="background-color: rgb(255,51,255)">
+                        <input readonly name="weakAVG " value="{{basecount.weak_AVG}} ">
+                        <label class="lead " for="weakAVG ">%AT </label>
+                        <p class="lead ">(<b style="font-weight: bold ">W</b>eak-2H bonds)</p>
+
+                    </td>
+                    <td style="background-color:rgb(204,255,51)">
+                        <input readonly name="strongAVG " value="{{basecount.strong_AVG}} ">
+                        <label class="lead " for="strongAVG ">%GC </label>
+                        <p class="lead ">(<b style="font-weight: bold ">S</b>trong-3H bonds)</p>
+                    </td>
+                    <td>
+                        <input readonly name="total " value="{{basecount.aCount +basecount.tCount +basecount.gCount +basecount.cCount}} ">
+                        <label class="lead " for="total ">total # ACGT</label>
+                        <p class="lead ">(a<b style="font-weight: bold ">N</b>y base)</p>
+                    </td>
+                </tr>
+            </table>
         </div>
     </div>
 </div>
@@ -99,12 +100,12 @@
             <form>
                 <fieldset>
                     <input type="radio" name="format2" value="30" checked> Break Line: 30<br/>
-                    <input type="radio" name="format2" value="50" > Break Line: 50<br/>
-                    <input type="radio" name="format2" value="60" > Break Line: 60<br/>  
-                    <input type="radio" name="format2" value="100" > Break Line: 100<br/> 
+                    <input type="radio" name="format2" value="50"> Break Line: 50<br/>
+                    <input type="radio" name="format2" value="60"> Break Line: 60<br/>
+                    <input type="radio" name="format2" value="100"> Break Line: 100<br/>
                 </fieldset>
             </form>
-            <button class=" btn" (click)="format(pack(), line())">Format</button> 
+            <button class=" btn" (click)="format(pack(), line())">Format</button>
         </div>
         <div class="col-xs-10" style="padding-left:20px;">
             <label for="dnaoutput">Output</label>

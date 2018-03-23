@@ -86,4 +86,9 @@ export class CoreComponent implements OnInit {
   }
 
 
+clearInput(){
+  this.dna  = "";
+  this.dnaoutput = "";
+}
+
 }
