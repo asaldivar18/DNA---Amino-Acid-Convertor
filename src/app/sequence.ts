@@ -43,7 +43,7 @@ export class Sequence {
           }
 
     dnarna(sequence) {
-      const input = sequence.split('').map(function(el) {
+      const input = this.check(sequence.split('').map(function(el) {
                   switch (el) {
                     case 'T': return 'U';
                     case 'U': return 'T'; //showerrror
@@ -52,18 +52,19 @@ export class Sequence {
                     case 'u': return 't';
                     default: return el;
                   }
-      }).join('');
+      }).join(''));
       return input;
     }
 	
 	rna_dna(sequence){
-		const input = sequence.split('').map(function(el){
+
+		 const input = this.check(sequence.split('').map(function(el){
 			switch(el){
 				case 'A': return 'U'
 				case 'G': return 'C'
 				case 'U': return 
 			}
-		}).join('');
+		}).join(''));
 	}
 
     reverseSeq(sequence) {
@@ -89,7 +90,7 @@ export class Sequence {
               }
             })
             .join('');
-    return input;
+    return this.check(input);
     }
     
     reverseComplement(sequence) {
