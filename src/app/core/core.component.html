@@ -23,14 +23,14 @@
         <div class="col-xs-2">
             <div class="btn-group-vertical">
                 <br/>
-                <button class=" btn" (click)="stringCleanup()">String Cleanup</button>
-                <button class=" btn" (click)="dnarna()">DNA<->RNA</button>
-                <button class=" btn" (click)="reverse()">Reverse</button>
-                <button class=" btn" (click)="complement()">Complement</button>
-                <button class=" btn" (click)="reverseComplement()">Reverse and Complement</button>
-                <button class=" btn" (click)="strToAmino()">Generate 3-key Amino Acids</button>
-                <button class=" btn" (click)="strTo1mino()">Generate 1-key Amino Acids</button>
-                <button class=" btn" (click)="clearInput()">Clear All</button>
+                <button class=" btn" (click)="stringCleanup(); format(pack(), line());">String Cleanup</button>
+                <button class=" btn" (click)="dnarna(); format(pack(), line());">DNA<->RNA</button>
+                <button class=" btn" (click)="reverse(); format(pack(), line());">Reverse</button>
+                <button class=" btn" (click)="complement(); format(pack(), line());">Complement</button>
+                <button class=" btn" (click)="reverseComplement(); format(pack(), line());">Reverse and Complement</button>
+                <button class=" btn" (click)="strToAmino(); format(pack(), line());">Generate 3-key Amino Acids</button>
+                <button class=" btn" (click)="strTo1mino(); format(pack(), line());">Generate 1-key Amino Acids</button>
+                <button class=" btn" (click)="clearInput(); format(pack(), line());">Clear All</button>
             </div>
         </div>
         <div class="col-xs-8" style="padding-left:20px; padding-right:20px;">
@@ -92,20 +92,18 @@
             <br/>
             <form>
                 <fieldset>
-                    <input type="radio" name="format" value="1" checked> Pack Size: 1<br/>
-                    <input type="radio" name="format" value="3"> Pack Size: 3<br/>
-                    <input type="radio" name="format" value="10"> Pack Size: 10<br/>
+                    <input type="radio" name="format" value="1" checked (click)="format(pack(), line())"> Pack Size: 1<br/>
+                    <input type="radio" name="format" value="3" (click)="format(pack(), line())"> Pack Size: 3<br/>
+                    <input type="radio" name="format" value="10" (click)="format(pack(), line())"> Pack Size: 10<br/>
                 </fieldset>
             </form>
             <form>
                 <fieldset>
-                    <input type="radio" name="format2" value="30" checked> Break Line: 30<br/>
-                    <input type="radio" name="format2" value="50"> Break Line: 50<br/>
-                    <input type="radio" name="format2" value="60"> Break Line: 60<br/>
-                    <input type="radio" name="format2" value="100"> Break Line: 100<br/>
+                    <input type="radio" name="format2" value="30" checked (click)="format(pack(), line())"> Break Line: 30<br/>
+                    <input type="radio" name="format2" value="60" (click)="format(pack(), line())"> Break Line: 60<br/>
+                    <input type="radio" name="format2" value="120" (click)="format(pack(), line())"> Break Line: 120<br/>
                 </fieldset>
             </form>
-            <button class=" btn" (click)="format(pack(), line())">Format</button>
         </div>
         <div class="col-xs-10" style="padding-left:20px;">
             <label for="dnaoutput">Output</label>
