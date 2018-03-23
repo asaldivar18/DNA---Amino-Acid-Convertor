@@ -69,7 +69,7 @@ export class Sequence {
 
     reverseSeq(sequence) {
       const input = sequence.split('').reverse().join('');
-      return input;
+      return this.check(input);
     }
 
     complementSeq(sequence) {
