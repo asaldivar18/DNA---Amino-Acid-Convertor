@@ -1,5 +1,4 @@
 button {
-    padding: 5px;
     width: 100%;
 }
 
@@ -7,7 +6,9 @@ li {
     padding: 2px;
 }
 
+
 /* Add a background color to the top navigation */
+
 .topnav {
     background-color: #f26522;
     overflow: hidden;
@@ -15,7 +16,15 @@ li {
     margin-bottom: 10px;
 }
 
+.countResult {
+    width: 100%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+
 /* Style the links inside the navigation bar */
+
 .topnav a {
     float: left;
     color: #f2f2f2;
@@ -25,13 +34,17 @@ li {
     font-size: 17px;
 }
 
+
 /* Change the color of links on hover */
+
 .topnav a:hover {
     background-color: #ffffff;
     color: #f26522;
 }
 
+
 /* Add a color to the active/current link */
+
 .topnav a.active {
     background-color: #f26522;
     color: white;
@@ -48,17 +61,19 @@ body {
 }
 
 .btn {
-    background-color:#f26522;
+    background-color: #f26522;
     color: white;
     width: 250px;
 }
 
 .table {
-    margin:auto; 
-    border:2px solid black;
+    margin: auto;
+    border: 2px solid black;
 }
 
+
 /* Add a background color on hover */
+
 .btn-group-vertical button:hover {
     background-color: #ffffff;
     color: #f26522;
