@@ -1,112 +1,212 @@
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-xs-2">
-            <img src="\assets\images\abmLogo.png" alt="ABM" id="logo" />
-        </div>
-    </div>
-</div>
+<mat-sidenav-container class="container" style="height: 100%;">
+    <mat-toolbar class="container">
+        <span class="row">
+            <button mat-icon-button (click)="lnav.toggle(); rnav.toggle()"><i class="material-icons">view_array</i></button>
+        </span>
 
-<div class="container">
-    <div class="row">
-        <div class="col">
-            <div class="topnav">
-                <a class="active" href="#home">DNA Converter</a>
-                <a href="https://www.abmgood.com/misc/orders.php">Order Support</a>
-                <a href="https://www.abmgood.com/Technical-Support.html">Technical Support</a>
-            </div>
-        </div>
-    </div>
-</div>
+    </mat-toolbar>
+    <mat-sidenav #lnav mode="side" opened>
+        <mat-toolbar style="height: 100%; overflow-y: hidden;">
+            <mat-toolbar-row>
+                <span><strong style="text-align: inherit" class="active" href="#home">DNA Converter</strong></span>
+            </mat-toolbar-row>
+            <mat-toolbar-row><button mat-button (click)="stringCleanup(); (tabGroup.selectedIndex == 1) ? tabGroup.selectedIndex = 2:null  ">String Cleanup</button></mat-toolbar-row>
+            <mat-toolbar-row><button mat-button (click)="dnarna();(tabGroup.selectedIndex == 1) ? tabGroup.selectedIndex = 2:null">DNA<->RNA</button></mat-toolbar-row>
+            <mat-toolbar-row> <button mat-button (click)="reverse(); (tabGroup.selectedIndex == 1) ? tabGroup.selectedIndex = 2:null">Reverse</button></mat-toolbar-row>
+            <mat-toolbar-row> <button mat-button (click)="complement();  (tabGroup.selectedIndex == 1) ? tabGroup.selectedIndex = 2:null">Complement</button></mat-toolbar-row>
+            <mat-toolbar-row> <button mat-button (click)="reverseComplement(); (tabGroup.selectedIndex == 1) ? tabGroup.selectedIndex = 2:null">Reverse and Complement</button></mat-toolbar-row>
+            <mat-toolbar-row> <button mat-button (click)="strToAmino(); (tabGroup.selectedIndex == 1) ? tabGroup.selectedIndex = 2:null">Generate 3-key Amino Acids</button></mat-toolbar-row>
+            <mat-toolbar-row> <button mat-button (click)="strTo1mino(); (tabGroup.selectedIndex == 1) ? tabGroup.selectedIndex = 2:null">Generate 1-key Amino Acids</button></mat-toolbar-row>
+            <mat-toolbar-row> <button mat-button (click)="clearInput(); (tabGroup.selectedIndex == 1) ? tabGroup.selectedIndex = 2:null">Clear All</button></mat-toolbar-row>
+        </mat-toolbar>
+    </mat-sidenav>
+    <mat-sidenav #rnav style="text-align: right; overflow-x: hidden;" opened mode="side" position="end">
+        <br style="height: 100px" />
+        <div class=" container ">
 
-<div class="container-fluid">
-    <section class="row">
-        <nav class="col-lg-2 countResult">
-            <div class="btn-group-vertical">
-                <br/>
-                <button class=" btn" (click)="stringCleanup(); format(pack(), line())">String Cleanup</button>
-                <button class=" btn" (click)="dnarna(); format(pack(), line())">DNA<->RNA</button>
-                <button class=" btn" (click)="reverse();format(pack(), line())">Reverse</button>
-                <button class=" btn" (click)="complement(); format(pack(), line())">Complement</button>
-                <button class=" btn" (click)="reverseComplement(); format(pack(), line())">Reverse and Complement</button>
-                <button class=" btn" (click)="strToAmino();format(pack(), line())">Generate 3-key Amino Acids</button>
-                <button class=" btn" (click)="strTo1mino();format(pack(), line())">Generate 1-key Amino Acids</button>
-                <button class=" btn" (click)="clearInput();format(pack(), line())">Clear All</button>
-            </div>
-        </nav>
-        <div class="col-lg-8">
-            <div style="padding-top: 5px;padding-left:20px;">
-                <label for="dnainput"><strong>Input</strong></label>
-                <textarea class="form-control" name="dnainput" rows="10" cols="100" [(ngModel)]="dna" (keyup)="getBasecount()"></textarea>
-            </div>
+            <table>
+                <tr>
+                    <th>AT%(<strong>W</strong>eak-2H bonds): </th>
 
-            <div style="padding-left:20px">
-                <form class="form-inline">
-                    <fieldset style="display: inline-block">
-                        <input type="radio" class="radio-inline" (click)="format(pack(), line())" name="format" value="1" checked> Pack Size: 1
-                        <input type="radio" class="radio-inline" (click)="format(pack(), line())" name="format" value="3"> Pack Size: 3
-                        <input type="radio" class="radio-inline" (click)="format(pack(), line())" name="format" value="10"> Pack Size: 10
-                    </fieldset>
-                </form>
-                <form class="form-inline">
-                    <fieldset>
-                        <input type="radio" name="format2" (click)="format(pack(), line())" value="30" checked> Break Line: 30
-                        <input type="radio" name="format2" (click)="format(pack(), line())" value="60"> Break Line: 60
-                        <input type="radio" name="format2" (click)="format(pack(), line())" value="120"> Break Line: 120
-                    </fieldset>
-                </form>
-            </div>
+                </tr>
+                <tr>
+                    <td>{{basecount.weak_AVG}}% </td>
 
-            <div style="padding-top: 5px;padding-left:20px;">
-                <label for="dnaoutput"><strong>Output</strong></label>
-                <textarea class="form-control" name="dnaoutput" rows="10" cols="150" [(ngModel)]="dnaoutput"></textarea>
-            </div>
-        </div>
+                </tr>
+                <tr>
+                    <th>GC%(<strong>S</strong>trong-3H bonds): </th>
+                </tr>
+                <tr>
+                    <td>{{basecount.strong_AVG}}% </td>
+                </tr>
+            </table>
+            <h4>Nitrogenous base count</h4>
 
-
-        <div style="float:right" class="col-lg-2">
-            <br/>
             <table class="table">
                 <tr>
-                    <td style="background-color : rgb(102,204,255)">
-                        <input class="countResult" readonly name="aCount" value="{{basecount.aCount}}">
-                        <label class="lead" style="font-weight: bold " for="acount">A </label>
+                    <td># {{basecount.aCount}}</td>
+                    <td>Adenine (<strong>A</strong>)</td>
+                </tr>
+                <tr>
+                    <td># {{basecount.gCount}}</td>
+                    <td>Guanine (<strong>G</strong>)</td>
+
+                </tr>
+                <tr>
+                    <td># {{basecount.tCount}}</td>
+                    <td>Thymine (<strong>T</strong>)</td>
+
+                </tr>
+                <tr>
+                    <td># {{basecount.cCount}}</td>
+                    <td>Cytosine (<strong>C</strong>)</td>
+
+                </tr>
+                <tr>
+                    <td><strong> # nitrogenous bases:</strong></td>
+                    <td>{{basecount.aCount +basecount.tCount +basecount.gCount +basecount.cCount}}</td>
+                </tr>
+            </table>
+            <mat-radio-group [(ngModel)]="format1 " labelPosition="before ">
+                Pack Size:<br/>
+                <mat-radio-button (click)="format(format1, format2) " checked=true value="1 ">1</mat-radio-button>
+                <mat-radio-button (click)="format(format1, format2) " value="3 ">3</mat-radio-button>
+                <mat-radio-button (click)="format(format1, format2) " value="10 ">10</mat-radio-button>
+            </mat-radio-group>
+            <br/>
+            <mat-radio-group [(ngModel)]="format2 " labelPosition="before ">
+                Break Line:<br/>
+                <mat-radio-button (click)="format(format1, format2) " value="30 " checked=true> 30</mat-radio-button>
+                <mat-radio-button (click)="format(format1, format2) " value="60 "> 60</mat-radio-button>
+                <mat-radio-button (click)="format(format1, format2) " value="120 "> 120</mat-radio-button>
+            </mat-radio-group>
+
+        </div>
+
+    </mat-sidenav>
+
+    <mat-tab-group #tabGroup class="demo-tab-group ">
+
+        <mat-tab class="container " label="Input & Output ">
+
+            <div style="padding-top: 5px;padding-left:20px; ">
+                <label for="dnainput "><strong>Input</strong></label>
+                <textarea class="form-control " name="dnainput " rows="10 " cols="100 " [(ngModel)]="dna " (keyup)="getBasecount() "></textarea>
+            </div>
+            <div style="padding-top: 5px;padding-left:20px; ">
+                <label for="dnaoutput "><strong>Output</strong></label>
+                <textarea class="form-control " name="dnaoutput " rows="10 " cols="150 " [(ngModel)]="dnaoutput "></textarea>
+            </div>
+        </mat-tab>
+        <mat-tab (click)="selectTab(0) " label="Input ">
+            <div style="padding-top: 5px;padding-left:20px; ">
+                <label for="dnainput "><strong>Input</strong></label>
+                <textarea class="form-control " name="dnainput " rows="10 " cols="100 " [(ngModel)]="dna " (keyup)="getBasecount() "></textarea>
+            </div>
+        </mat-tab>
+        <mat-tab label="Output ">
+            <div style="padding-top: 5px;padding-left:20px; ">
+                <label for="dnaoutput "><strong>Output</strong></label>
+                <textarea class="form-control " name="dnaoutput " rows="10 " cols="150 " [(ngModel)]="dnaoutput "></textarea>
+            </div>
+        </mat-tab>
+
+    </mat-tab-group>
+</mat-sidenav-container>
+
+
+
+
+<!--
+<div class="container-fluid ">
+    <section class="row ">
+        <nav class="col-lg-2 countResult ">
+            <div class="btn-group-vertical ">
+                <br/>
+                <button mat-button (click)="stringCleanup(); format(pack(), line()) ">String Cleanup</button>
+                <button mat-button (click)="dnarna(); format(pack(), line()) ">DNA<->RNA</button>
+                <button mat-button (click)="reverse();format(pack(), line()) ">Reverse</button>
+                <button mat-button (click)="complement(); format(pack(), line()) ">Complement</button>
+                <button mat-button (click)="reverseComplement(); format(pack(), line()) ">Reverse and Complement</button>
+                <button mat-button (click)="strToAmino();format(pack(), line()) ">Generate 3-key Amino Acids</button>
+                <button mat-button (click)="strTo1mino();format(pack(), line()) ">Generate 1-key Amino Acids</button>
+                <button mat-button (click)="clearInput();format(pack(), line()) ">Clear All</button>
+            </div>
+        </nav>
+        <div class="col-lg-8 ">
+            <div style="padding-top: 5px;padding-left:20px; ">
+                <label for="dnainput "><strong>Input</strong></label>
+                <textarea class="form-control " name="dnainput " rows="10 " cols="100 " [(ngModel)]="dna " (keyup)="getBasecount() "></textarea>
+            </div>
+
+            <div style="padding-left:20px ">
+                <form class="form-inline ">
+                    <fieldset style="display: inline-block ">
+                        <input type="radio " class="radio-inline " (click)="format(pack(), line()) " name="format " value="1 " checked> Pack Size: 1
+                        <input type="radio " class="radio-inline " (click)="format(pack(), line()) " name="format " value="3 "> Pack Size: 3
+                        <input type="radio " class="radio-inline " (click)="format(pack(), line()) " name="format " value="10 "> Pack Size: 10
+                    </fieldset>
+                </form>
+                <form class="form-inline ">
+                    <fieldset>
+                        <input type="radio " name="format2 " (click)="format(pack(), line()) " value="30 " checked> Break Line: 30
+                        <input type="radio " name="format2 " (click)="format(pack(), line()) " value="60 "> Break Line: 60
+                        <input type="radio " name="format2 " (click)="format(pack(), line()) " value="120 "> Break Line: 120
+                    </fieldset>
+                </form>
+            </div>
+
+            <div style="padding-top: 5px;padding-left:20px; ">
+                <label for="dnaoutput "><strong>Output</strong></label>
+                <textarea class="form-control " name="dnaoutput " rows="10 " cols="150 " [(ngModel)]="dnaoutput "></textarea>
+            </div>
+        </div>
+
+
+        <div style="float:right " class="col-lg-2 ">
+            <br/>
+            <table class="table ">
+                <tr>
+                    <td style="background-color : rgb(102,204,255) ">
+                        <input class="countResult " readonly name="aCount " value="{{basecount.aCount}} ">
+                        <label class="lead " style="font-weight: bold " for="acount ">A </label>
                     </td>
                 </tr>
                 <tr>
-                    <td style="background-color:rgb(102,255,102)">
-                        <input class="countResult" readonly name="gCount" value="{{basecount.gCount}}">
-                        <label class="lead" style="font-weight: bold " for="gcount">G </label>
+                    <td style="background-color:rgb(102,255,102) ">
+                        <input class="countResult " readonly name="gCount " value="{{basecount.gCount}} ">
+                        <label class="lead " style="font-weight: bold " for="gcount ">G </label>
                     </td>
                 </tr>
                 <tr>
-                    <td style="background-color:rgb(255,51,102)">
-                        <input class="countResult" readonly name="tCount" value="{{basecount.tCount}}">
-                        <label class="lead" style="font-weight: bold " for="tcount">T </label>
+                    <td style="background-color:rgb(255,51,102) ">
+                        <input class="countResult " readonly name="tCount " value="{{basecount.tCount}} ">
+                        <label class="lead " style="font-weight: bold " for="tcount ">T </label>
                     </td>
                 </tr>
                 <tr>
-                    <td style="background-color:rgb(255,255,0)">
-                        <input class="countResult" readonly name=" cCount " value="{{basecount.cCount}} ">
+                    <td style="background-color:rgb(255,255,0) ">
+                        <input class="countResult " readonly name=" cCount " value="{{basecount.cCount}} ">
                         <label class="lead " style="font-weight: bold " for="acount ">C </label>
                     </td>
                 </tr>
                 <tr>
-                    <td style="background-color: rgb(255,51,255)">
-                        <input class="countResult" readonly name="weakAVG " value="{{basecount.weak_AVG}} ">
+                    <td style="background-color: rgb(255,51,255) ">
+                        <input class="countResult " readonly name="weakAVG " value="{{basecount.weak_AVG}} ">
                         <label class="lead " for="weakAVG ">%AT </label>
                         <p class="lead ">(<b style="font-weight: bold ">W</b>eak-2H bonds)</p>
                     </td>
                 </tr>
                 <tr>
-                    <td style="background-color:rgb(204,255,51)">
-                        <input class="countResult" readonly name="strongAVG " value="{{basecount.strong_AVG}} ">
+                    <td style="background-color:rgb(204,255,51) ">
+                        <input class="countResult " readonly name="strongAVG " value="{{basecount.strong_AVG}} ">
                         <label class="lead " for="strongAVG ">%GC </label>
                         <p class="lead ">(<b style="font-weight: bold ">S</b>trong-3H bonds)</p>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <input class="countResult" readonly name="total " value="{{basecount.aCount +basecount.tCount +basecount.gCount +basecount.cCount}} ">
+                        <input class="countResult " readonly name="total " value="{{basecount.aCount +basecount.tCount +basecount.gCount +basecount.cCount}} ">
                         <label class="lead " for="total ">total # ACGT</label>
                         <p class="lead ">(a<b style="font-weight: bold ">N</b>y base)</p>
                     </td>
@@ -116,3 +216,21 @@
     </section>
 
 </div>
+        <p> Format Options </p>
+
+        <mat-radio-group [(ngModel)]="format1 " labelPosition="before ">
+            Pack Size:<br/>
+            <mat-radio-button (change)="format(format1, format2) " checked="true " value="1 ">1</mat-radio-button><br/>
+            <mat-radio-button (change)="format(format1, format2) " value="3 ">3</mat-radio-button><br/>
+            <mat-radio-button (change)="format(format1, format2) " value="10 ">10</mat-radio-button><br/>
+        </mat-radio-group>
+        <br/>
+        <mat-radio-group [(ngModel)]="format2 " labelPosition="before ">
+            Break Line:<br/>
+            <mat-radio-button (change)="format(format1, format2) " value="30 " checked> 30</mat-radio-button><br/>
+            <mat-radio-button (change)="format(format1, format2) " value="60 "> 60</mat-radio-button><br/>
+            <mat-radio-button (change)="format(format1, format2) " value="120 "> 120</mat-radio-button><br/>
+        </mat-radio-group>
+
+*****************************************************************************************************************
+ -->

@@ -1,1 +1,40 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+/* Add a background color to the top navigation */
+
+.topnav {
+    background-color: #f26522;
+    overflow: hidden;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+
+/* Style the links inside the navigation bar */
+
+.topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+
+/* Change the color of links on hover */
+
+.topnav a:hover {
+    background-color: #ffffff;
+    color: #f26522;
+}
+
+
+/* Add a color to the active/current link */
+
+.topnav a.active {
+    background-color: #f26522;
+    color: white;
+}

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Sequence } from '../sequence';
 import { Basecount } from '../basecount';
+import { MatSidenavModule, MatDrawerContent, MatDrawer} from '@angular/material/sidenav';
+
 
 
 @Component({
@@ -13,8 +15,11 @@ export class CoreComponent implements OnInit {
   dnaoutput: string;
   sequence: Sequence;
   basecount: Basecount;
+    events = [];
+
 
   constructor() {
+    //console.log(this.sequence.check("abcdefgh"));
   }
 
   ngOnInit() {
@@ -63,32 +68,12 @@ export class CoreComponent implements OnInit {
   }
 
 
-  pack() {
-    var format = document.forms[0];
-    var val;
-    for (var i = 0; i < format.length; i++) {
-        if (format[i].checked) {
-            val = format[i].value;
-        }
-    }
-    return val;
-  }
-
-  line() {
-    var format2 = document.forms[1];
-    var val;
-    for (var i = 0; i < format2.length; i++) {
-        if (format2[i].checked) {
-            val = format2[i].value;
-        }
-    }
-    return val;
-  }
-
 
 clearInput(){
   this.dna  = "";
   this.dnaoutput = "";
 }
+
+
 
 }
