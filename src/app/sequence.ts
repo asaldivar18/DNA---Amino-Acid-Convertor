@@ -1,3 +1,4 @@
+
 class  Basecount {
   aCount: number;
   tCount: number;
@@ -13,12 +14,17 @@ export class Sequence {
     complement: string;
     reversecomplement: string;
     baseCount: Basecount;
+    isDNA: boolean;
+    packsize: number;
+    breakline: number;
 
 
     constructor() {
     }
 
     check(sequence) {
+
+      
         const input = sequence.split('\n');
         let i = 0;
         const list = [];
@@ -30,7 +36,8 @@ export class Sequence {
         });
         list.forEach(c => {
             input.splice(list[c], 1);
-            });
+          });
+       
       return input.join('\n')
                         .toUpperCase()
                         .replace(/^\>.*$/g, '')
@@ -47,7 +54,6 @@ export class Sequence {
                   switch (el) {
                     case 'T': return 'U';
                     case 'U': return 'T'; //showerrror
-                    case 'U': return 'T';
                     case 't': return 'u';
                     case 'u': return 't';
                     default: return el;
@@ -91,14 +97,40 @@ export class Sequence {
             })
             .join('');
     return this.check(input);
-    }
+  }
+  
+  complementRNA(sequence){
+          const input = sequence
+            .split('')
+            .map(function(el) {
+              switch (el) {
+                case 'A': return 'U';
+                //case 'T': return 'A';
+                case 'G': return 'C';
+                case 'C': return 'G';
+                case 'U': return 'A';
+                
+                case 'a': return 't';
+                case 't': return 'a';
+                case 'g': return 'g';
+                case 'c': return 'c';
+                case 'u': return 'u';
+              }
+            })
+            .join('');
+    return this.check(input);
+  }
     
     reverseComplement(sequence) {
-            const tmpDna = this.reverseSeq(sequence);
-            return this.complementSeq(tmpDna);
+            let tmpDna = this.reverseSeq(sequence);
+            tmpDna =  this.complementSeq(tmpDna);
+
+            return tmpDna
     }
 
     format(sequence, pack, line) {
+      this.packsize = pack;
+      this.breakline = line;
       let i = 1;
       const input = sequence.split('').map(function(el) {
         switch (el) {

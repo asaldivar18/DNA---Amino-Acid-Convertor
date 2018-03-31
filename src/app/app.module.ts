@@ -13,6 +13,12 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatIconModule} from '@angular/material/icon';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatDialogModule} from '@angular/material/dialog';
+
+
+
 
 import {MatTableModule} from '@angular/material/table';
 
@@ -34,7 +40,10 @@ import {MatTableModule} from '@angular/material/table';
     MatTabsModule,
     MatRadioModule,
     MatTableModule,
-    MatIconModule
+    MatIconModule,
+    MatChipsModule,
+    MatSnackBarModule,
+    MatDialogModule
   ],
 
   providers: [],

@@ -1,29 +1,30 @@
-<mat-sidenav-container class="container" style="height: 100%;">
-    <mat-toolbar class="container">
-        <span class="row">
-            <button mat-icon-button (click)="lnav.toggle(); rnav.toggle()"><i class="material-icons">view_array</i></button>
-        </span>
-
+<mat-sidenav-container class="container-fluid " style="display:block;overflow:auto;">
+    <mat-toolbar>
+        <button name="toggleb" mat-button (click)="lnav.toggle(); rnav.toggle()"><i class="material-icons">view_array</i></button>
     </mat-toolbar>
-    <mat-sidenav #lnav mode="side" opened>
+    <mat-sidenav style="display:block; overflow:auto;" #lnav mode="side" opened>
         <mat-toolbar style="height: 100%; overflow-y: hidden;">
             <mat-toolbar-row>
-                <span><strong style="text-align: inherit" class="active" href="#home">DNA Converter</strong></span>
+                <span class="d-none d-lg-block"><strong style="text-align: inherit" class="active" href="#home">DNA Converter</strong></span>
+                <button class="d-sm-none" name="toggleb" mat-button (click)="lnav.toggle(); rnav.toggle()"><h2>Hide Buttons<i class="material-icons">view_array</i></h2></button>
+
             </mat-toolbar-row>
-            <mat-toolbar-row><button mat-button (click)="stringCleanup(); (tabGroup.selectedIndex == 1) ? tabGroup.selectedIndex = 2:null  ">String Cleanup</button></mat-toolbar-row>
-            <mat-toolbar-row><button mat-button (click)="dnarna();(tabGroup.selectedIndex == 1) ? tabGroup.selectedIndex = 2:null">DNA<->RNA</button></mat-toolbar-row>
-            <mat-toolbar-row> <button mat-button (click)="reverse(); (tabGroup.selectedIndex == 1) ? tabGroup.selectedIndex = 2:null">Reverse</button></mat-toolbar-row>
-            <mat-toolbar-row> <button mat-button (click)="complement();  (tabGroup.selectedIndex == 1) ? tabGroup.selectedIndex = 2:null">Complement</button></mat-toolbar-row>
-            <mat-toolbar-row> <button mat-button (click)="reverseComplement(); (tabGroup.selectedIndex == 1) ? tabGroup.selectedIndex = 2:null">Reverse and Complement</button></mat-toolbar-row>
-            <mat-toolbar-row> <button mat-button (click)="strToAmino(); (tabGroup.selectedIndex == 1) ? tabGroup.selectedIndex = 2:null">Generate 3-key Amino Acids</button></mat-toolbar-row>
-            <mat-toolbar-row> <button mat-button (click)="strTo1mino(); (tabGroup.selectedIndex == 1) ? tabGroup.selectedIndex = 2:null">Generate 1-key Amino Acids</button></mat-toolbar-row>
-            <mat-toolbar-row> <button mat-button (click)="clearInput(); (tabGroup.selectedIndex == 1) ? tabGroup.selectedIndex = 2:null">Clear All</button></mat-toolbar-row>
+            <mat-toolbar-row><button mat-button (click)="stringCleanup();   ">String Cleanup</button></mat-toolbar-row>
+            <mat-toolbar-row><button mat-button (click)="dnarna(); ">DNA<->RNA</button></mat-toolbar-row>
+            <mat-toolbar-row> <button mat-button (click)="reverse();  ">Reverse</button></mat-toolbar-row>
+            <mat-toolbar-row> <button mat-button (click)="complement();   ">Complement</button></mat-toolbar-row>
+            <mat-toolbar-row> <button mat-button (click)="reverseComplement();  ">Reverse and Complement</button></mat-toolbar-row>
+            <mat-toolbar-row> <button mat-button (click)="strToAmino();  ">Generate 3-key Amino Acids</button></mat-toolbar-row>
+            <mat-toolbar-row> <button mat-button (click)="strTo1mino();  ">Generate 1-key Amino Acids</button></mat-toolbar-row>
+            <mat-toolbar-row> <button mat-button (click)="clearInput();  ">Clear All</button></mat-toolbar-row>
+            <mat-toolbar-row> <button mat-button (click)="complementRNA();  ">Complement RNA</button></mat-toolbar-row>
+
         </mat-toolbar>
     </mat-sidenav>
-    <mat-sidenav #rnav style="text-align: right; overflow-x: hidden;" opened mode="side" position="end">
+    <mat-sidenav class="d-none d-lg-block" #rnav style="text-align: right;display:block; overflow:auto;" opened mode="side" position="end">
         <br style="height: 100px" />
         <div class=" container ">
-
+            <h4>Nitrogenous base count</h4>
             <table>
                 <tr>
                     <th>AT%(<strong>W</strong>eak-2H bonds): </th>
@@ -40,7 +41,6 @@
                     <td>{{basecount.strong_AVG}}% </td>
                 </tr>
             </table>
-            <h4>Nitrogenous base count</h4>
 
             <table class="table">
                 <tr>
@@ -67,53 +67,145 @@
                     <td>{{basecount.aCount +basecount.tCount +basecount.gCount +basecount.cCount}}</td>
                 </tr>
             </table>
-            <mat-radio-group [(ngModel)]="format1 " labelPosition="before ">
-                Pack Size:<br/>
-                <mat-radio-button (click)="format(format1, format2) " checked=true value="1 ">1</mat-radio-button>
-                <mat-radio-button (click)="format(format1, format2) " value="3 ">3</mat-radio-button>
-                <mat-radio-button (click)="format(format1, format2) " value="10 ">10</mat-radio-button>
-            </mat-radio-group>
-            <br/>
-            <mat-radio-group [(ngModel)]="format2 " labelPosition="before ">
-                Break Line:<br/>
-                <mat-radio-button (click)="format(format1, format2) " value="30 " checked=true> 30</mat-radio-button>
-                <mat-radio-button (click)="format(format1, format2) " value="60 "> 60</mat-radio-button>
-                <mat-radio-button (click)="format(format1, format2) " value="120 "> 120</mat-radio-button>
-            </mat-radio-group>
-
         </div>
 
     </mat-sidenav>
 
-    <mat-tab-group #tabGroup class="demo-tab-group ">
+    <mat-tab-group style="display:block;overflow:auto;" #tabGroup class="demo-tab-group ">
 
         <mat-tab class="container " label="Input & Output ">
+            <div class="alert alert-danger" id="warning" style="visibility: hidden" role="alert">
+                There are invalid characters in the input
+            </div>
+            <div style="padding-top: 5px;padding-left:20px; ">
+                <label for="dnainput "><strong>Input</strong></label>
+                <textarea class="form-control " name="dnainput " rows="10 " cols="100 " [(ngModel)]="dna " (keyup)="getBasecount() "></textarea>
+            </div>
+            <div class=" container row">
+                <mat-radio-group [(ngModel)]=" packsize " labelPosition="before ">
+                    Pack Size:<br/>
+                    <mat-radio-button checked=true value="1 ">1</mat-radio-button>
+                    <mat-radio-button value="3 ">3</mat-radio-button>
+                    <mat-radio-button value="10 ">10</mat-radio-button>
+                </mat-radio-group>
+                <br/>
+                <mat-radio-group [(ngModel)]="breakline " labelPosition="before ">
+                    Break Line:<br/>
+                    <mat-radio-button value="30 " checked=true> 30</mat-radio-button>
+                    <mat-radio-button value="60 "> 60</mat-radio-button>
+                    <mat-radio-button value="120 "> 120</mat-radio-button>
+                </mat-radio-group>
+            </div>
+            <div style="padding-top: 5px;padding-left:20px; ">
+                <label for="dnaoutput "><strong>Output</strong>       
+                         <mat-chip-list>
+                    <mat-chip>Convert: {{converter}}</mat-chip>
+                    <mat-chip>Pack Size: {{packsize}}</mat-chip>
+                    <mat-chip>Break Line: {{breakline}}</mat-chip>
+                </mat-chip-list>
+                </label>
 
-            <div style="padding-top: 5px;padding-left:20px; ">
-                <label for="dnainput "><strong>Input</strong></label>
-                <textarea class="form-control " name="dnainput " rows="10 " cols="100 " [(ngModel)]="dna " (keyup)="getBasecount() "></textarea>
-            </div>
-            <div style="padding-top: 5px;padding-left:20px; ">
-                <label for="dnaoutput "><strong>Output</strong></label>
                 <textarea class="form-control " name="dnaoutput " rows="10 " cols="150 " [(ngModel)]="dnaoutput "></textarea>
             </div>
         </mat-tab>
-        <mat-tab (click)="selectTab(0) " label="Input ">
-            <div style="padding-top: 5px;padding-left:20px; ">
-                <label for="dnainput "><strong>Input</strong></label>
-                <textarea class="form-control " name="dnainput " rows="10 " cols="100 " [(ngModel)]="dna " (keyup)="getBasecount() "></textarea>
-            </div>
-        </mat-tab>
-        <mat-tab label="Output ">
-            <div style="padding-top: 5px;padding-left:20px; ">
-                <label for="dnaoutput "><strong>Output</strong></label>
-                <textarea class="form-control " name="dnaoutput " rows="10 " cols="150 " [(ngModel)]="dnaoutput "></textarea>
+
+        <mat-tab class="card" label="Base Count">
+            <div style="padding-bottom:100px;" class="card-body container-fluid ">
+                <h4>Nitrogenous Base Count</h4>
+
+                <section class="col-md-6">
+                    <table class="table">
+                        <tr>
+                            <th>AT%(<strong>W</strong>eak-2H bonds): </th>
+                            <th>GC%(<strong>S</strong>trong-3H bonds): </th>
+                        </tr>
+                        <tr>
+                            <td>{{basecount.weak_AVG}}% </td>
+                            <td>{{basecount.strong_AVG}}% </td>
+                        </tr>
+                    </table>
+                </section>
+                <section class="col-md-6">
+
+                    <table class="table">
+                        <tr>
+                            <td># {{basecount.aCount}}</td>
+                            <td>Adenine (<strong>A</strong>)</td>
+                        </tr>
+                        <tr>
+                            <td># {{basecount.gCount}}</td>
+                            <td>Guanine (<strong>G</strong>)</td>
+
+                        </tr>
+                        <tr>
+                            <td># {{basecount.tCount}}</td>
+                            <td>Thymine (<strong>T</strong>)</td>
+
+                        </tr>
+                        <tr>
+                            <td># {{basecount.cCount}}</td>
+                            <td>Cytosine (<strong>C</strong>)</td>
+
+                        </tr>
+                        <tr>
+                            <td><strong> # nitrogenous bases:</strong></td>
+                            <td>{{basecount.aCount +basecount.tCount +basecount.gCount +basecount.cCount}}</td>
+                        </tr>
+                    </table>
+                </section>
             </div>
         </mat-tab>
 
     </mat-tab-group>
 </mat-sidenav-container>
 
+<div class="d-sm-none container-fluid ">
+
+
+    <h4>Nitrogenous Base Count</h4>
+
+    <section class="col-md-6">
+        <table class="table">
+            <tr>
+                <th>AT%(<strong>W</strong>eak-2H bonds): </th>
+                <th>GC%(<strong>S</strong>trong-3H bonds): </th>
+            </tr>
+            <tr>
+                <td>{{basecount.weak_AVG}}% </td>
+                <td>{{basecount.strong_AVG}}% </td>
+            </tr>
+        </table>
+    </section>
+    <section class="col-md-6">
+        <h4>Nitrogenous base count</h4>
+
+        <table class="table">
+            <tr>
+                <td># {{basecount.aCount}}</td>
+                <td>Adenine (<strong>A</strong>)</td>
+            </tr>
+            <tr>
+                <td># {{basecount.gCount}}</td>
+                <td>Guanine (<strong>G</strong>)</td>
+
+            </tr>
+            <tr>
+                <td># {{basecount.tCount}}</td>
+                <td>Thymine (<strong>T</strong>)</td>
+
+            </tr>
+            <tr>
+                <td># {{basecount.cCount}}</td>
+                <td>Cytosine (<strong>C</strong>)</td>
+
+            </tr>
+            <tr>
+                <td><strong> # nitrogenous bases:</strong></td>
+                <td>{{basecount.aCount +basecount.tCount +basecount.gCount +basecount.cCount}}</td>
+            </tr>
+        </table>
+    </section>
+</div>
 
 
 
@@ -149,9 +241,9 @@
                 </form>
                 <form class="form-inline ">
                     <fieldset>
-                        <input type="radio " name="format2 " (click)="format(pack(), line()) " value="30 " checked> Break Line: 30
-                        <input type="radio " name="format2 " (click)="format(pack(), line()) " value="60 "> Break Line: 60
-                        <input type="radio " name="format2 " (click)="format(pack(), line()) " value="120 "> Break Line: 120
+                        <input type="radio " name="breakline " (click)="format(pack(), line()) " value="30 " checked> Break Line: 30
+                        <input type="radio " name="breakline " (click)="format(pack(), line()) " value="60 "> Break Line: 60
+                        <input type="radio " name="breakline " (click)="format(pack(), line()) " value="120 "> Break Line: 120
                     </fieldset>
                 </form>
             </div>
@@ -218,18 +310,18 @@
 </div>
         <p> Format Options </p>
 
-        <mat-radio-group [(ngModel)]="format1 " labelPosition="before ">
+        <mat-radio-group [(ngModel)]=" packsize " labelPosition="before ">
             Pack Size:<br/>
-            <mat-radio-button (change)="format(format1, format2) " checked="true " value="1 ">1</mat-radio-button><br/>
-            <mat-radio-button (change)="format(format1, format2) " value="3 ">3</mat-radio-button><br/>
-            <mat-radio-button (change)="format(format1, format2) " value="10 ">10</mat-radio-button><br/>
+            <mat-radio-button (change)="format( packsize, breakline) " checked="true " value="1 ">1</mat-radio-button><br/>
+            <mat-radio-button (change)="format( packsize, breakline) " value="3 ">3</mat-radio-button><br/>
+            <mat-radio-button (change)="format( packsize, breakline) " value="10 ">10</mat-radio-button><br/>
         </mat-radio-group>
         <br/>
-        <mat-radio-group [(ngModel)]="format2 " labelPosition="before ">
+        <mat-radio-group [(ngModel)]="breakline " labelPosition="before ">
             Break Line:<br/>
-            <mat-radio-button (change)="format(format1, format2) " value="30 " checked> 30</mat-radio-button><br/>
-            <mat-radio-button (change)="format(format1, format2) " value="60 "> 60</mat-radio-button><br/>
-            <mat-radio-button (change)="format(format1, format2) " value="120 "> 120</mat-radio-button><br/>
+            <mat-radio-button (change)="format( packsize, breakline) " value="30 " checked> 30</mat-radio-button><br/>
+            <mat-radio-button (change)="format( packsize, breakline) " value="60 "> 60</mat-radio-button><br/>
+            <mat-radio-button (change)="format( packsize, breakline) " value="120 "> 120</mat-radio-button><br/>
         </mat-radio-group>
 
 *****************************************************************************************************************
