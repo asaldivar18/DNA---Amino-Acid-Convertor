@@ -84,8 +84,14 @@ export class CoreComponent implements OnInit {
   }
 
   reverseComplement() {
-    this.dnaoutput = this.sequence.format(this.sequence.reverseComplement(this.dna), this.packsize, this.breakline);
-    this.converter = "Reverse & Complement"
+    if(this.dna.includes("U") || this.dna.includes("u")) {
+      this.dnaoutput = this.sequence.format(this.sequence.reverseComplementRNA(this.dna), this.packsize, this.breakline);
+      this.converter = "Reverse & Complement RNA"
+
+    } else {
+      this.dnaoutput = this.sequence.format(this.sequence.reverseComplement(this.dna), this.packsize, this.breakline);
+      this.converter = "Reverse & Complement DNA"
+    }
 
   }
 
