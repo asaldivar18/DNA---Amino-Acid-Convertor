@@ -178,7 +178,7 @@ strToAmino(sequence, arg) {
       ["Thr ", "T"],
       ["Ala ", "A"],
       ["Tyr ", "Y"],
-      ["*** ", "*"],
+      ["* ", "*"],
       ["His ", "H"],
       ["Gln ", "Q"],
       ["Asn ", "N"],
@@ -189,6 +189,7 @@ strToAmino(sequence, arg) {
       ["Trp ", "W"],
       ["Arg ", "R"],
       ["Gly ", "G"],
+      [" ", ""]
       ];
       const input = sequence.match(/[\s\S]{1,3}/g || []).map(
             function(el) {
@@ -311,7 +312,7 @@ strToAmino(sequence, arg) {
                 case 'GGA' : return list[20][i];
                 case 'GGG' : return list[20][i];
                 case 'AGG' : return list[19][i];
-                default : return "NULL "
+                default : return list[21][i];
               }
             }
       ).join('');
