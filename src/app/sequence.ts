@@ -92,12 +92,12 @@ export class Sequence {
                 case 'T': return 'A';
                 case 'G': return 'C';
                 case 'C': return 'G';
-                case 'U': return 'A';
+                //case 'U': return 'A';
                 case 'a': return 't';
                 case 't': return 'a';
-                case 'g': return 'g';
-                case 'c': return 'c';
-                case 'u': return 'u';
+                case 'g': return 'c';
+                case 'c': return 'g';
+                //case 'u': return 'u';
               }
             })
             .join('');
@@ -115,11 +115,11 @@ export class Sequence {
                 case 'C': return 'G';
                 case 'U': return 'A';
                 
-                case 'a': return 't';
-                case 't': return 'a';
-                case 'g': return 'g';
-                case 'c': return 'c';
-                case 'u': return 'u';
+                case 'a': return 'u';
+                //case 't': return 'a';
+                case 'g': return 'c';
+                case 'c': return 'g';
+                case 'u': return 'a';
               }
             })
             .join('');
@@ -132,6 +132,13 @@ export class Sequence {
 
             return tmpDna
     }
+
+    reverseComplementRNA(sequence) {
+      let tmpDna = this.reverseSeq(sequence);
+      tmpDna =  this.complementRNA(tmpDna);
+      return tmpDna
+}
+
 
     format(sequence, pack, line) {
       this.packsize = pack;

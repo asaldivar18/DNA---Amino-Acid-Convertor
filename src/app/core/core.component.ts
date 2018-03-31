@@ -41,8 +41,6 @@ export class CoreComponent implements OnInit {
     {
       let snackBarRef = this.snackBar.open('Invalid Characters');
       document.getElementById("warning").style.visibility = "visible";
-      //alert("Invalid Characters")
-
     } else {
       document.getElementById("warning").style.visibility = "hidden";    
     } 
@@ -53,14 +51,23 @@ export class CoreComponent implements OnInit {
 
   
 
+
     this.basecount.getBaseCount(this.dna);
     this.basecount.getstrong_AVG();
     this.basecount.getweak_AVG();
   }
   
   stringCleanup() {
-    this.dnaoutput = this.sequence.format(this.sequence.check(this.dna),this.packsize,this.breakline);
-    this.converter = "String Cleanup";
+    if(this.dna.match(/[^AUTCGautcg]/))
+    {
+      if(confirm("Invalid Characters")){
+        this.dnaoutput = this.sequence.format(this.sequence.check(this.dna),this.packsize,this.breakline);
+        this.converter = "String Cleanup";
+      } else {
+        this.clearInput();
+      }
+  
+    } 
   }
 
   dnarna() {
@@ -84,8 +91,14 @@ export class CoreComponent implements OnInit {
   }
 
   reverseComplement() {
-    this.dnaoutput = this.sequence.format(this.sequence.reverseComplement(this.dna), this.packsize, this.breakline);
-    this.converter = "Reverse & Complement"
+    if(this.dna.includes("U") || this.dna.includes("u")) {
+      this.dnaoutput = this.sequence.format(this.sequence.reverseComplementRNA(this.dna), this.packsize, this.breakline);
+      this.converter = "Reverse & Complement RNA"
+
+    } else {
+      this.dnaoutput = this.sequence.format(this.sequence.reverseComplement(this.dna), this.packsize, this.breakline);
+      this.converter = "Reverse & Complement DNA"
+    }
 
   }
 
