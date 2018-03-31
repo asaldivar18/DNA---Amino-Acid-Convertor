@@ -20,13 +20,14 @@ export class Sequence {
 
 
     constructor() {
+
     }
 
-    check(sequence) {
-
-      
+    check(sequence:string) {
         const input = sequence.split('\n');
         let i = 0;
+      try{
+
         const list = [];
         input.forEach(c => {
             if (c.match('^\>.*$')) {
@@ -37,6 +38,10 @@ export class Sequence {
         list.forEach(c => {
             input.splice(list[c], 1);
           });
+      } catch(a){
+
+      }
+
        
       return input.join('\n')
                         .toUpperCase()
@@ -73,7 +78,7 @@ export class Sequence {
 		}).join(''));
 	}
 
-    reverseSeq(sequence) {
+    reverseSeq(sequence:string) {
       const input = sequence.split('').reverse().join('');
       return this.check(input);
     }
@@ -178,7 +183,6 @@ strToAmino(sequence, arg) {
       ["Arg ", "R"],
       ["Gly ", "G"],
       ];
-
       const input = sequence.match(/[\s\S]{1,3}/g || []).map(
             function(el) {
               switch (el) {
@@ -304,6 +308,7 @@ strToAmino(sequence, arg) {
               }
             }
       ).join('');
+
       return input;
     }
 }

@@ -36,16 +36,22 @@ export class CoreComponent implements OnInit {
   }
 
   getBasecount(){
-    if(this.dna.match(/[^AUTCGautcg]/))
+    try{
+      if(this.dna.match(/[^AUTCGautcg]/))
     {
       let snackBarRef = this.snackBar.open('Invalid Characters');
       document.getElementById("warning").style.visibility = "visible";
-      alert("Invalid Characters")
+      //alert("Invalid Characters")
 
     } else {
-      document.getElementById("warning").style.visibility = "hidden";
+      document.getElementById("warning").style.visibility = "hidden";    
+    } 
+    }catch(e){
 
-  };
+    }
+
+
+  
 
     this.basecount.getBaseCount(this.dna);
     this.basecount.getstrong_AVG();

@@ -6,7 +6,6 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { CoreComponent } from './core/core.component';
-
 import { MatSidenavModule, MatDrawerContent, MatDrawer} from '@angular/material/sidenav';
 import { MatToolbarModule} from '@angular/material/toolbar'
 import {MatButtonModule} from '@angular/material/button';
@@ -16,10 +15,6 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatDialogModule} from '@angular/material/dialog';
-
-
-
-
 import {MatTableModule} from '@angular/material/table';
 
 
