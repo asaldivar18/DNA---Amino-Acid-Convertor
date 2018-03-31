@@ -22,13 +22,14 @@ import {MatTableModule} from '@angular/material/table';
 describe('CoreComponent', () => {
   let component: CoreComponent;
   let sequence: Sequence;
+  let basecount: Basecount;
   let fixture: ComponentFixture<CoreComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CoreComponent ],
-            imports:[
-            BrowserModule,
+    declarations: [ CoreComponent ],
+    imports:[
+    BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
     MatSidenavModule,
@@ -50,7 +51,6 @@ describe('CoreComponent', () => {
     fixture = TestBed.createComponent(CoreComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    //sequence = new Sequence();
   });
 
 
@@ -82,9 +82,57 @@ describe('CoreComponent', () => {
     expect(component.sequence.complementSeq('TAGC')).toEqual('ATCG')
   })
 
-  it('complementSeq replaces T with A, A with T, G with C, C with G', ()=>{
-    expect(component.sequence.complementSeq('TAGC')).toEqual('ATCG')
+  it('ComplementRNA replaces U with A, A with U, G with C, C with G', ()=>{
+    expect(component.sequence.complementRNA('UAGC')).toEqual('AUCG')
   })
+
+  it('reverseComplementRNA replaces U with A, A with U, G with C, C with G', ()=>{
+    expect(component.sequence.reverseComplementRNA('UAGC')).toEqual('GCUA')
+  })
+
+  it('reverseComplement replaces T with A, A with T, G with C, C with G', ()=>{
+    expect(component.sequence.reverseComplement('TAGC')).toEqual('GCTA')
+  })
+
+  it('strToAmino converts 3 key values into Amino Acid protien (First Letter)', ()=>{
+    expect(component.sequence.strToAmino('atg tgt gct gct cgg cta gcg gcg gcg gcg gcg gcg gcc cag tcg gtg tat gcc ttc tcg gcg cgc ccg ctg gcc ggc ggg gag cct gtg agc ctg ggc tcc ctg cgg ggc aag gta cta ctt atc gag aat gtg gcg tcc ctc atg aac gag ctg cag cgg cgc ctc gga ccc cgg ggc ctg gtg gtg ctc ggc ttc ccg tgc aac cag ttt ggg cat cag gag aac gcc aag aac gaa gag att ctg aat tcc ctc aag tac gtc cgg cct ggt ggt ggg ttc gag ccc aac ttc atg ctc ttc gag aag tgc gag gtg aac ggt gcg ggg gcg cac cct ctc ttc gcc ttc ctg cgg gag gcc ctg cca gct ccc agc gac gac gcc acc gcg ctt atg acc gac ccc aag ctc atc acc tgg tct ccg gtg tgt cgc aac gat gtt gcc tgg aac ttt gag aag ttc ctg gtg ggc cct gac ggt gtg ccc cta cgc agg tac agc cgc cgc ttc cag acc att gac atc gag cct gac atc gaa gcc ctg ctg tct caa ggg ccc agc tgt gcc tag', 1))
+    .toEqual('MCAARLAAAAAAAQSVYAFSARPLAGGEPVSLGSLRGKVLLIENVASLMNELQRRLGPRGLVVLGFPCNQFGHQENAKNEEILNSLKYVRPGGGFEPNFMLFEKCEVNGAGAHPLFAFLREALPAPSDDATALMTDPKLITWSPVCRNDVAWNFEKFLVGPDGVPLRRYSRRFQTIDIEPDIEALLSQGPSCA*')
+  })
+
+  it('strToAmino converts 3 key values into Amino Acid protien (First Letter)', ()=>{
+    expect(component.sequence.strToAmino('atg tgt gct gct cgg cta gcg gcg gcg gcg gcg gcg gcc cag tcg gtg tat gcc ttc tcg gcg cgc ccg ctg gcc ggc ggg gag cct gtg agc ctg ggc tcc ctg cgg ggc aag gta cta ctt atc gag aat gtg gcg tcc ctc atg aac gag ctg cag cgg cgc ctc gga ccc cgg ggc ctg gtg gtg ctc ggc ttc ccg tgc aac cag ttt ggg cat cag gag aac gcc aag aac gaa gag att ctg aat tcc ctc aag tac gtc cgg cct ggt ggt ggg ttc gag ccc aac ttc atg ctc ttc gag aag tgc gag gtg aac ggt gcg ggg gcg cac cct ctc ttc gcc ttc ctg cgg gag gcc ctg cca gct ccc agc gac gac gcc acc gcg ctt atg acc gac ccc aag ctc atc acc tgg tct ccg gtg tgt cgc aac gat gtt gcc tgg aac ttt gag aag ttc ctg gtg ggc cct gac ggt gtg ccc cta cgc agg tac agc cgc cgc ttc cag acc att gac atc gag cct gac atc gaa gcc ctg ctg tct caa ggg ccc agc tgt gcc tag', 0))
+    .toEqual('Met Cys Ala Ala Arg Leu Ala Ala Ala Ala Ala Ala Ala Gln Ser Val Tyr Ala Phe Ser Ala Arg Pro Leu Ala Gly Gly Glu Pro Val Ser Leu Gly Ser Leu Arg Gly Lys Val Leu Leu Ile Glu Asn Val Ala Ser Leu Met Asn Glu Leu Gln Arg Arg Leu Gly Pro Arg Gly Leu Val Val Leu Gly Phe Pro Cys Asn Gln Phe Gly His Gln Glu Asn Ala Lys Asn Glu Glu Ile Leu Asn Ser Leu Lys Tyr Val Arg Pro Gly Gly Gly Phe Glu Pro Asn Phe Met Leu Phe Glu Lys Cys Glu Val Asn Gly Ala Gly Ala His Pro Leu Phe Ala Phe Leu Arg Glu Ala Leu Pro Ala Pro Ser Asp Asp Ala Thr Ala Leu Met Thr Asp Pro Lys Leu Ile Thr Trp Ser Pro Val Cys Arg Asn Asp Val Ala Trp Asn Phe Glu Lys Phe Leu Val Gly Pro Asp Gly Val Pro Leu Arg Arg Tyr Ser Arg Arg Phe Gln Thr Ile Asp Ile Glu Pro Asp Ile Glu Ala Leu Leu Ser Gln Gly Pro Ser Cys Ala *** ')
+  })
+
+
+  it('basecount getStrong_Avg and  getWeak_AVG calculates average of respectable values', ()=>{
+    component.basecount.getBaseCount("atg tgt gct gct cgg cta gcg gcg gcg gcg gcg gcg gcc cag tcg gtg tat gcc ttc tcg gcg cgc ccg ctg gcc ggc ggg gag cct gtg agc ctg ggc tcc ctg cgg ggc aag gta cta ctt atc gag aat gtg gcg tcc ctc atg aac gag ctg cag cgg cgc ctc gga ccc cgg ggc ctg gtg gtg ctc ggc ttc ccg tgc aac cag ttt ggg cat cag gag aac gcc aag aac gaa gag att ctg aat tcc ctc aag tac gtc cgg cct ggt ggt ggg ttc gag ccc aac ttc atg ctc ttc gag aag tgc gag gtg aac ggt gcg ggg gcg cac cct ctc ttc gcc ttc ctg cgg gag gcc ctg cca gct ccc agc gac gac gcc acc gcg ctt atg acc gac ccc aag ctc atc acc tgg tct ccg gtg tgt cgc aac gat gtt gcc tgg aac ttt gag aag ttc ctg gtg ggc cct gac ggt gtg ccc cta cgc agg tac agc cgc cgc ttc cag acc att gac atc gag cct gac atc gaa gcc ctg ctg tct caa ggg ccc agc tgt gcc tag")
+    component.basecount.getstrong_AVG()
+    component.basecount.getweak_AVG()
+    expect(component.basecount.weak_AVG).toBeGreaterThan(0)
+    expect(component.basecount.strong_AVG).toBeGreaterThan(0)
+  })
+
+    it('basecount counts the number of [atgc]', ()=>{
+    component.basecount.getBaseCount("atg tgt gct gct cgg cta gcg gcg gcg gcg gcg gcg gcc cag tcg gtg tat gcc ttc tcg gcg cgc ccg ctg gcc ggc ggg gag cct gtg agc ctg ggc tcc ctg cgg ggc aag gta cta ctt atc gag aat gtg gcg tcc ctc atg aac gag ctg cag cgg cgc ctc gga ccc cgg ggc ctg gtg gtg ctc ggc ttc ccg tgc aac cag ttt ggg cat cag gag aac gcc aag aac gaa gag att ctg aat tcc ctc aag tac gtc cgg cct ggt ggt ggg ttc gag ccc aac ttc atg ctc ttc gag aag tgc gag gtg aac ggt gcg ggg gcg cac cct ctc ttc gcc ttc ctg cgg gag gcc ctg cca gct ccc agc gac gac gcc acc gcg ctt atg acc gac ccc aag ctc atc acc tgg tct ccg gtg tgt cgc aac gat gtt gcc tgg aac ttt gag aag ttc ctg gtg ggc cct gac ggt gtg ccc cta cgc agg tac agc cgc cgc ttc cag acc att gac atc gag cct gac atc gaa gcc ctg ctg tct caa ggg ccc agc tgt gcc tag")
+    expect(component.basecount.aCount).toBeGreaterThan(0)
+    expect(component.basecount.tCount).toBeGreaterThan(0)
+    expect(component.basecount.gCount).toBeGreaterThan(0)
+    expect(component.basecount.cCount).toBeGreaterThan(0)
+  })
+
+  it('clear resets all values in basecount to 0', ()=>{
+    component.basecount.getBaseCount("atg tgt gct gct cgg cta gcg gcg gcg gcg gcg gcg gcc cag tcg gtg tat gcc ttc tcg gcg cgc ccg ctg gcc ggc ggg gag cct gtg agc ctg ggc tcc ctg cgg ggc aag gta cta ctt atc gag aat gtg gcg tcc ctc atg aac gag ctg cag cgg cgc ctc gga ccc cgg ggc ctg gtg gtg ctc ggc ttc ccg tgc aac cag ttt ggg cat cag gag aac gcc aag aac gaa gag att ctg aat tcc ctc aag tac gtc cgg cct ggt ggt ggg ttc gag ccc aac ttc atg ctc ttc gag aag tgc gag gtg aac ggt gcg ggg gcg cac cct ctc ttc gcc ttc ctg cgg gag gcc ctg cca gct ccc agc gac gac gcc acc gcg ctt atg acc gac ccc aag ctc atc acc tgg tct ccg gtg tgt cgc aac gat gtt gcc tgg aac ttt gag aag ttc ctg gtg ggc cct gac ggt gtg ccc cta cgc agg tac agc cgc cgc ttc cag acc att gac atc gag cct gac atc gaa gcc ctg ctg tct caa ggg ccc agc tgt gcc tag")
+    component.basecount.clear();
+    expect(component.basecount.aCount).toEqual(0)
+    expect(component.basecount.tCount).toEqual(0)
+    expect(component.basecount.gCount).toEqual(0)
+    expect(component.basecount.cCount).toEqual(0)
+    expect(component.basecount.weak_AVG).toEqual(0)
+    expect(component.basecount.strong_AVG).toEqual(0)
+  
+  })
+
 
 
 

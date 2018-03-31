@@ -1,4 +1,4 @@
-import { TestBed, async } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import {CoreComponent} from '../app/core/core.component'
 import { Sequence } from './sequence';
@@ -22,6 +22,12 @@ import {MatTableModule} from '@angular/material/table';
 
 
 describe('AppComponent', () => {
+
+    let component: CoreComponent;
+  let sequence: Sequence;
+  let basecount: Basecount;
+  let fixture: ComponentFixture<CoreComponent>;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
@@ -46,6 +52,65 @@ describe('AppComponent', () => {
     }).compileComponents();
   }));
   
+  beforeEach(() => {
+    fixture = TestBed.createComponent(CoreComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('Initialize Basecount Class', ()=>{
+  expect(component.basecount).not.toBe(null);
+})
+
+  it('Initialize Sequence Class', ()=>{
+  expect(component.sequence).not.toBe(null);
+})
+
+ it('When DNA<->RNA button is pressed, converter type is changed', ()=>{
+   component.dnarna()
+   expect(component.converter).toEqual("DNA <-> RNA")
+ })
+
+ it('When String Cleanup button is pressed, converter type is changed', ()=>{
+   component.stringCleanup()
+   expect(component.converter).toEqual("String Cleanup")
+ })
+
+ it('When Reverse button is pressed, converter type is changed', ()=>{
+   component.reverse()
+   expect(component.converter).toEqual("Reverse DNA")
+ })
+
+ it('When Complement button is pressed, converter type is changed', ()=>{
+   component.complement()
+   expect(component.converter).toContain("Complement")
+ })
+
+  it('When Reverse Complement button is pressed, converter type is changed', ()=>{
+   component.reverseComplement()
+   expect(component.converter).toContain("Complement")
+ })
+
+  it('When Generate 3-key Amino Acids Button is pressed, converter type is changed', ()=>{
+  component.dna = "AAACCC"
+   component.strToAmino()
+   expect(component.converter).toContain("Generate 3-key Amino Acids")
+ })
+
+   it('When Generate 3-key Amino Acids Button is pressed, converter type is changed', ()=>{
+     component.dna = "AAACCCa"
+   component.strTo1mino()
+   expect(component.converter).toContain("Generate 1-key Amino Acids")
+ })
+
+it('When clearinput button is pressed, values are reset', ()=>{
+  component.clearInput();
+  expect(component.dna).toEqual('');
+  expect(component.dnaoutput).toEqual('');
+})
+
+
+
 /*
 
   it('should create the app', async(() => {

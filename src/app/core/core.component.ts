@@ -16,10 +16,10 @@ export class CoreComponent implements OnInit {
   dnaoutput: string;
   sequence: Sequence;
   basecount: Basecount;
-    events = [];
-    converter:string;
-        packsize: number;
-    breakline: number;
+  events = [];
+  converter:string;
+  packsize: number;
+  breakline: number;
     
 
 
@@ -47,11 +47,6 @@ export class CoreComponent implements OnInit {
     }catch(e){
 
     }
-
-
-  
-
-
     this.basecount.getBaseCount(this.dna);
     this.basecount.getstrong_AVG();
     this.basecount.getweak_AVG();
@@ -103,13 +98,22 @@ export class CoreComponent implements OnInit {
   }
 
   strToAmino() {
+    try{
     this.dnaoutput = this.sequence.format(this.sequence.strToAmino(this.dna, 0), 0,this.breakline);
-    this.converter = "Generate 3-key Amino Acids"
+    this.converter = "Generate 3-key Amino Acids"      
+    } catch(e){
+
+    }
   }
 
   strTo1mino() {
+    try{
     this.dnaoutput = this.sequence.format(this.sequence.strToAmino(this.dna, 1), this.packsize, this.breakline);
     this.converter = "Generate 1-key Amino Acids"
+    } catch(e){
+      
+    }
+
   }
 /*
   format(pack, line) {
