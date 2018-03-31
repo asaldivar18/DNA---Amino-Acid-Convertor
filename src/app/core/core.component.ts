@@ -40,12 +40,10 @@ export class CoreComponent implements OnInit {
     {
       let snackBarRef = this.snackBar.open('Invalid Characters');
       document.getElementById("warning").style.visibility = "visible";
-      alert("Invalid Characters")
-
     } else {
       document.getElementById("warning").style.visibility = "hidden";
 
-  };
+    };
 
     this.basecount.getBaseCount(this.dna);
     this.basecount.getstrong_AVG();
@@ -53,8 +51,16 @@ export class CoreComponent implements OnInit {
   }
   
   stringCleanup() {
-    this.dnaoutput = this.sequence.format(this.sequence.check(this.dna),this.packsize,this.breakline);
-    this.converter = "String Cleanup";
+    if(this.dna.match(/[^AUTCGautcg]/))
+    {
+      if(confirm("Invalid Characters")){
+        this.dnaoutput = this.sequence.format(this.sequence.check(this.dna),this.packsize,this.breakline);
+        this.converter = "String Cleanup";
+      } else {
+        this.clearInput();
+      }
+  
+    } 
   }
 
   dnarna() {
