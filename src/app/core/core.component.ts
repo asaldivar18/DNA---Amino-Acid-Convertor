@@ -23,8 +23,7 @@ export class CoreComponent implements OnInit {
     
 
 
-  constructor(public snackBar: MatSnackBar, public dialog: MatDialog) {
-    //console.log(this.sequence.check("abcdefgh"));
+  constructor() {
   }
 
   ngOnInit() {
@@ -37,9 +36,8 @@ export class CoreComponent implements OnInit {
 
   getBasecount(){
     try{
-      if(this.dna.match(/[^AUTCGautcg]/))
+      if(this.dna.match(/[^AUTCGautcg ]/))
     {
-      let snackBarRef = this.snackBar.open('Invalid Characters');
       document.getElementById("warning").style.visibility = "visible";
     } else {
       document.getElementById("warning").style.visibility = "hidden";    
@@ -53,66 +51,134 @@ export class CoreComponent implements OnInit {
   }
   
   stringCleanup() {
-    if(this.dna.match(/[^AUTCGautcg]/))
-    {
+    if(this.dna.match(/[^AUTCGautcg ]/)){
       if(confirm("Invalid Characters")){
         this.dnaoutput = this.sequence.format(this.sequence.check(this.dna),this.packsize,this.breakline);
         this.converter = "String Cleanup";
       } else {
         this.clearInput();
       }
-  
-    } 
+    } else {
+        this.dnaoutput = this.sequence.format(this.sequence.check(this.dna),this.packsize,this.breakline);
+        this.converter = "String Cleanup";
+    }  
+ 
   }
 
   dnarna() {
-    this.dnaoutput = this.sequence.format(this.sequence.dnarna(this.dna), this.packsize, this.breakline);
-    this.converter = "DNA <-> RNA";
+        if(this.dna.match(/[^AUTCGautcg ]/)){
+          if(confirm("Invalid Characters")){
+            this.dnaoutput = this.sequence.format(this.sequence.dnarna(this.dna), this.packsize, this.breakline);
+            this.converter = "DNA <-> RNA";            
+          } else {
+            this.clearInput();
+          }
+        } else {
+            this.dnaoutput = this.sequence.format(this.sequence.dnarna(this.dna), this.packsize, this.breakline);
+            this.converter = "DNA <-> RNA";   
+        }
+
   }
 
   reverse() {
-    this.dnaoutput = this.sequence.format(this.sequence.reverseSeq(this.dna), this.packsize, this.breakline);
-    this.converter = "Reverse DNA"
+      if(this.dna.match(/[^AUTCGautcg ]/)){
+          if(confirm("Invalid Characters")){
+            this.dnaoutput = this.sequence.format(this.sequence.reverseSeq(this.dna), this.packsize, this.breakline);
+            this.converter = "Reverse DNA"    
+          } else {
+            this.clearInput();
+          }
+        } else {
+            this.dnaoutput = this.sequence.format(this.sequence.reverseSeq(this.dna), this.packsize, this.breakline);
+            this.converter = "Reverse DNA"    
+        }
+
   }
 
   complement() {
-    if(this.dna.includes("U") || this.dna.includes("u")){
-      this.converter = "Complement RNA"
-      this.dnaoutput = this.sequence.format(this.sequence.complementRNA(this.dna), this.packsize, this.breakline);
-    } else {
-    this.dnaoutput = this.sequence.format(this.sequence.complementSeq(this.dna), this.packsize, this.breakline);
-    this.converter = "Complement DNA"
-    }
+      if(this.dna.match(/[^AUTCGautcg ]/)){
+          if(confirm("Invalid Characters")){
+            if(this.dna.includes("U") || this.dna.includes("u")){
+              this.converter = "Complement RNA"
+              this.dnaoutput = this.sequence.format(this.sequence.complementRNA(this.dna), this.packsize, this.breakline);
+            } else {
+              this.dnaoutput = this.sequence.format(this.sequence.complementSeq(this.dna), this.packsize, this.breakline);
+              this.converter = "Complement DNA"
+            }
+      } else {
+          this.clearInput();
+        }
+      } else {
+            if(this.dna.includes("U") || this.dna.includes("u")){
+              this.converter = "Complement RNA"
+              this.dnaoutput = this.sequence.format(this.sequence.complementRNA(this.dna), this.packsize, this.breakline);
+            } else {
+              this.dnaoutput = this.sequence.format(this.sequence.complementSeq(this.dna), this.packsize, this.breakline);
+              this.converter = "Complement DNA"
+            }        
+      }
   }
 
   reverseComplement() {
-    if(this.dna.includes("U") || this.dna.includes("u")) {
-      this.dnaoutput = this.sequence.format(this.sequence.reverseComplementRNA(this.dna), this.packsize, this.breakline);
-      this.converter = "Reverse & Complement RNA"
+      if(this.dna.match(/[^AUTCGautcg ]/)){
+          if(confirm("Invalid Characters")){
+            if(this.dna.includes("U") || this.dna.includes("u")) {
+              this.dnaoutput = this.sequence.format(this.sequence.reverseComplementRNA(this.dna), this.packsize, this.breakline);
+              this.converter = "Reverse & Complement RNA"
+            } else {
+              this.dnaoutput = this.sequence.format(this.sequence.reverseComplement(this.dna), this.packsize, this.breakline);
+              this.converter = "Reverse & Complement DNA"
+          }    
+          } else {
+            this.clearInput();
+          }
+        } else {
+            if(this.dna.includes("U") || this.dna.includes("u")) {
+              this.dnaoutput = this.sequence.format(this.sequence.reverseComplementRNA(this.dna), this.packsize, this.breakline);
+              this.converter = "Reverse & Complement RNA"
+            } else {
+              this.dnaoutput = this.sequence.format(this.sequence.reverseComplement(this.dna), this.packsize, this.breakline);
+              this.converter = "Reverse & Complement DNA"
+            }
+        }
 
-    } else {
-      this.dnaoutput = this.sequence.format(this.sequence.reverseComplement(this.dna), this.packsize, this.breakline);
-      this.converter = "Reverse & Complement DNA"
-    }
 
   }
 
   strToAmino() {
-    try{
-    this.dnaoutput = this.sequence.format(this.sequence.strToAmino(this.dna, 0), 0,this.breakline);
-    this.converter = "Generate 3-key Amino Acids"      
-    } catch(e){
+      if(this.dna.match(/[^AUTCGautcg ]/)){
+          if(confirm("Invalid Characters")){
+            try{
+              this.dnaoutput = this.sequence.format(this.sequence.strToAmino(this.dna, 0), 0,this.breakline);
+              this.converter = "Generate 3-key Amino Acids"      
+            } catch(e){}
+          } else {
+            this.clearInput();
+          }
+        } else {
+              this.dnaoutput = this.sequence.format(this.sequence.strToAmino(this.dna, 0), 0,this.breakline);
+              this.converter = "Generate 3-key Amino Acids"      
+        }
 
-    }
+
   }
 
   strTo1mino() {
-    try{
-    this.dnaoutput = this.sequence.format(this.sequence.strToAmino(this.dna, 1), this.packsize, this.breakline);
-    this.converter = "Generate 1-key Amino Acids"
-    } catch(e){
-      
-    }
+      if(this.dna.match(/[^AUTCGautcg ]/)){
+          if(confirm("Invalid Characters")){
+            try{
+              this.dnaoutput = this.sequence.format(this.sequence.strToAmino(this.dna, 1), this.packsize, this.breakline);
+              this.converter = "Generate 1-key Amino Acids"
+            } catch(e){}    
+          } else {
+            this.clearInput();
+          }
+        } else {
+              this.dnaoutput = this.sequence.format(this.sequence.strToAmino(this.dna, 1), this.packsize, this.breakline);
+              this.converter = "Generate 1-key Amino Acids"          
+        }
+
+
 
   }
 /*
@@ -129,6 +195,7 @@ export class CoreComponent implements OnInit {
 clearInput(){
   this.dna  = "";
   this.dnaoutput = "";
+  this.basecount.clear();
 }
 
 complementRNA(){

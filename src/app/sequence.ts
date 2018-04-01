@@ -312,7 +312,7 @@ strToAmino(sequence, arg) {
                 case 'GGA' : return list[20][i];
                 case 'GGG' : return list[20][i];
                 case 'AGG' : return list[19][i];
-                default : return list[21][i];
+                default : return  el + list[21][i];
               }
             }
       ).join('');

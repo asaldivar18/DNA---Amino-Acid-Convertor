@@ -97,7 +97,7 @@ describe('AppComponent', () => {
    expect(component.converter).toContain("Generate 3-key Amino Acids")
  })
 
-   it('When Generate 3-key Amino Acids Button is pressed, converter type is changed', ()=>{
+   it('When Generate 1-key Amino Acids Button is pressed, converter type is changed', ()=>{
      component.dna = "AAACCCa"
    component.strTo1mino()
    expect(component.converter).toContain("Generate 1-key Amino Acids")
