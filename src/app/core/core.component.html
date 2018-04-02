@@ -1,22 +1,24 @@
+<mat-toolbar color="primary" class="example-toolbar">
+    <button mat-icon-button (click)="lnav.toggle(); rnav.toggle()"><mat-icon>menu</mat-icon></button>
+    <h1 class="example-app-name">DNA Converter</h1>
+</mat-toolbar>
 <mat-sidenav-container class="container-fluid " style="display:block;overflow:auto;">
     <mat-toolbar>
         <button name="toggleb" mat-button (click)="lnav.toggle(); rnav.toggle()"><i class="material-icons">view_array</i></button>
     </mat-toolbar>
-    <mat-sidenav style="display:block; overflow:auto;" #lnav mode="side" opened>
+    <mat-sidenav [opened]="screenWidth > 840" [mode]="(screenWidth > 840) ? 'side' : 'over'" style="display:block; overflow:auto;" #lnav mode="side" opened>
         <mat-toolbar style="height: 100%; overflow-y: hidden;">
             <mat-toolbar-row>
-                <span class="d-none d-lg-block"><strong style="text-align: inherit" class="active" href="#home">DNA Converter</strong></span>
-                <button class="d-sm-none" name="toggleb" mat-button (click)="lnav.toggle(); rnav.toggle()"><h2>Hide Buttons<i class="material-icons">view_array</i></h2></button>
-
+                <span class="d-none d-sm-block"><strong style="text-align: inherit" class="active" href="#home">String Manipulation Options</strong></span>
             </mat-toolbar-row>
-            <mat-toolbar-row><button mat-button (click)="stringCleanup();   ">String Cleanup</button></mat-toolbar-row>
-            <mat-toolbar-row><button mat-button (click)="dnarna(); ">DNA<->RNA</button></mat-toolbar-row>
-            <mat-toolbar-row> <button mat-button (click)="reverse();  ">Reverse</button></mat-toolbar-row>
-            <mat-toolbar-row> <button mat-button (click)="complement();   ">Complement</button></mat-toolbar-row>
-            <mat-toolbar-row> <button mat-button (click)="reverseComplement();  ">Reverse and Complement</button></mat-toolbar-row>
-            <mat-toolbar-row> <button mat-button (click)="strToAmino();  ">Generate 3-key Amino Acids</button></mat-toolbar-row>
-            <mat-toolbar-row> <button mat-button (click)="strTo1mino();  ">Generate 1-key Amino Acids</button></mat-toolbar-row>
-            <mat-toolbar-row> <button mat-button (click)="clearInput();  ">Clear All</button></mat-toolbar-row>
+            <mat-toolbar-row> <button id="convertButton" mat-button color="primary" (click)="stringCleanup();   ">String Cleanup</button></mat-toolbar-row>
+            <mat-toolbar-row> <button id="convertButton" mat-button color="primary" (click)="dnarna(); ">DNA<->RNA</button></mat-toolbar-row>
+            <mat-toolbar-row> <button id="convertButton" mat-button color="primary" (click)="reverse();  ">Reverse</button></mat-toolbar-row>
+            <mat-toolbar-row> <button id="convertButton" mat-button color="primary" (click)="complement();   ">Complement</button></mat-toolbar-row>
+            <mat-toolbar-row> <button id="convertButton" mat-button color="primary" (click)="reverseComplement();  ">Reverse and Complement</button></mat-toolbar-row>
+            <mat-toolbar-row> <button id="convertButton" mat-button color="primary" (click)="strToAmino();  ">Generate 3-key Amino Acids</button></mat-toolbar-row>
+            <mat-toolbar-row> <button id="convertButton" mat-button color="primary" (click)="strTo1mino();  ">Generate 1-key Amino Acids</button></mat-toolbar-row>
+            <mat-toolbar-row> <button id="convertButton" mat-button color="primary" (click)="clearInput();  ">Clear All</button></mat-toolbar-row>
 
         </mat-toolbar>
     </mat-sidenav>
@@ -160,50 +162,6 @@
 
 <div class="d-sm-none container-fluid ">
 
-
-    <h4>Nitrogenous Base Count</h4>
-
-    <section class="col-md-6">
-        <table class="table">
-            <tr>
-                <th>AT%(<strong>W</strong>eak-2H bonds): </th>
-                <th>GC%(<strong>S</strong>trong-3H bonds): </th>
-            </tr>
-            <tr>
-                <td>{{basecount.weak_AVG}}% </td>
-                <td>{{basecount.strong_AVG}}% </td>
-            </tr>
-        </table>
-    </section>
-    <section class="col-md-6">
-        <h4>Nitrogenous base count</h4>
-
-        <table class="table">
-            <tr>
-                <td># {{basecount.aCount}}</td>
-                <td>Adenine (<strong>A</strong>)</td>
-            </tr>
-            <tr>
-                <td># {{basecount.gCount}}</td>
-                <td>Guanine (<strong>G</strong>)</td>
-
-            </tr>
-            <tr>
-                <td># {{basecount.tCount}}</td>
-                <td>Thymine (<strong>T</strong>)</td>
-
-            </tr>
-            <tr>
-                <td># {{basecount.cCount}}</td>
-                <td>Cytosine (<strong>C</strong>)</td>
-
-            </tr>
-            <tr>
-                <td><strong> # nitrogenous bases:</strong></td>
-                <td>{{basecount.aCount +basecount.tCount +basecount.gCount +basecount.cCount}}</td>
-            </tr>
-        </table>
-    </section>
 </div>
 
 
