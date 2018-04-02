@@ -128,7 +128,7 @@ dnarna() {
 
   strTo1mino() {
     try{
-    this.dnaoutput = this.sequence.format(this.sequence.strToAmino(this.dna, 1), this.packsize, this.breakline);
+    this.dnaoutput = this.sequence.format(this.sequence.strToAmino(this.dna, 1), 0, this.breakline);
     this.converter = "Generate 1-key Amino Acids"   
     this.tmpoutput = this.sequence.strToAmino(this.dna, 1);
     } catch(e){

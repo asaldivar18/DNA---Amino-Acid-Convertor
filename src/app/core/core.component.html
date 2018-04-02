@@ -23,48 +23,38 @@
 
         </mat-toolbar>
     </mat-sidenav>
-    <mat-sidenav class="d-none d-lg-block" #rnav style="text-align: right;display:block; overflow:auto;" opened mode="side" position="end">
+    <mat-sidenav class="d-none d-lg-block" #rnav style="text-align: right;display:block; overflow:auto;" opened mode="side" position="end" style="padding-top:125px">
         <br style="height: 100px" />
-        <div class=" container ">
-            <h4>Nitrogenous base count</h4>
-            <table>
-                <tr>
-                    <th>AT%(<strong>W</strong>eak-2H bonds): </th>
-                </tr>
-                <tr>
-                    <td>{{basecount.weak_AVG}}% </td>
-                </tr>
-                <tr>
-                    <th>GC%(<strong>S</strong>trong-3H bonds): </th>
-                </tr>
-                <tr>
-                    <td>{{basecount.strong_AVG}}% </td>
-                </tr>
-            </table>
-
+        <div class="container">
+                <h4>Nitrogenous Base Count</h4>
             <table class="table">
                 <tr>
                     <td># {{basecount.aCount}}</td>
                     <td>Adenine (<strong>A</strong>)</td>
                 </tr>
                 <tr>
-                    <td># {{basecount.gCount}}</td>
-                    <td>Guanine (<strong>G</strong>)</td>
-
-                </tr>
-                <tr>
                     <td># {{basecount.tCount}}</td>
                     <td>Thymine (<strong>T</strong>)</td>
-
+                </tr>
+                <tr>
+                <td>{{basecount.weak_AVG}}</td>
+                    <td>AT% (<strong>W</strong>eak-2H bonds)</td>
+                </tr>
+                <tr>
+                    <td># {{basecount.gCount}}</td>
+                    <td>Guanine (<strong>G</strong>)</td>
                 </tr>
                 <tr>
                     <td># {{basecount.cCount}}</td>
                     <td>Cytosine (<strong>C</strong>)</td>
-
                 </tr>
                 <tr>
-                    <td><strong> # nitrogenous bases:</strong></td>
+                    <td>{{basecount.strong_AVG}}</td>
+                        <td>GC% (<strong>S</strong>trong-3H bonds)</td>
+                    </tr>
+                <tr>
                     <td>{{basecount.aCount +basecount.tCount +basecount.gCount +basecount.cCount}}</td>
+                    <td>total # ACGT (a<strong>N</strong>y base)</td>
                 </tr>
             </table>
         </div>
@@ -82,15 +72,15 @@
                 <textarea class="form-control " name="dnainput " rows="10 " cols="100 " [(ngModel)]="dna " (keyup)="getBasecount() "></textarea>
             </div>
             <div class=" container row">
-                <mat-radio-group (change)="format( packsize, breakline)" [(ngModel)]="packsize" labelPosition="before ">
+                <mat-radio-group (change)="format( packsize, breakline)" [(ngModel)]="packsize" labelPosition="before " style="padding-left:20px">
                     Pack Size:<br/>
                     <mat-radio-button checked value="0 "> 0</mat-radio-button>
                     <mat-radio-button value="1 ">1</mat-radio-button>
                     <mat-radio-button value="3 ">3</mat-radio-button>
                     <mat-radio-button value="10 ">10</mat-radio-button>
                 </mat-radio-group>
-                <br/>
-                <mat-radio-group (change)="format(packsize, breakline) " [(ngModel)]="breakline " labelPosition="before ">
+                
+                <mat-radio-group (change)="format(packsize, breakline) " [(ngModel)]="breakline " labelPosition="before " style="padding-left:40px">
                     Break Line:<br/>
                     <mat-radio-button checked=true value="0 "> 0</mat-radio-button>
                     <mat-radio-button value="30 " checked=true> 30</mat-radio-button>
