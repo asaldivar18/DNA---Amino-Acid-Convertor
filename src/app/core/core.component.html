@@ -1,11 +1,12 @@
 <mat-toolbar color="primary" class="example-toolbar">
     <button mat-icon-button (click)="lnav.toggle(); rnav.toggle()"><mat-icon>menu</mat-icon></button>
-    <h1 class="example-app-name">DNA Converter</h1>
+    <img src="\assets\images\abmLogo.png" alt="ABM" id="logo" style="width:200px" />
+    <div class=" text-align:center">
+        <h1 style="padding-top: 5px;" class="example-app-name">DNA Converter</h1>
+
+    </div>
 </mat-toolbar>
 <mat-sidenav-container class="container-fluid " style="display:block;overflow:auto;">
-    <mat-toolbar>
-        <button name="toggleb" mat-button (click)="lnav.toggle(); rnav.toggle()"><i class="material-icons">view_array</i></button>
-    </mat-toolbar>
     <mat-sidenav [opened]="screenWidth > 840" [mode]="(screenWidth > 840) ? 'side' : 'over'" style="display:block; overflow:auto;" #lnav mode="side" opened>
         <mat-toolbar style="height: 100%; overflow-y: hidden;">
             <mat-toolbar-row>
