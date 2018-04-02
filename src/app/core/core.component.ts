@@ -35,7 +35,7 @@ constructor() {
     this.sequence = new Sequence();
     this.basecount = new Basecount(this.dna);
     this.getBasecount();
-    this.dna = " "
+    this.dna = ""
     
   }
 
