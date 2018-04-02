@@ -29,11 +29,9 @@
             <table>
                 <tr>
                     <th>AT%(<strong>W</strong>eak-2H bonds): </th>
-
                 </tr>
                 <tr>
                     <td>{{basecount.weak_AVG}}% </td>
-
                 </tr>
                 <tr>
                     <th>GC%(<strong>S</strong>trong-3H bonds): </th>
@@ -83,15 +81,17 @@
                 <textarea class="form-control " name="dnainput " rows="10 " cols="100 " [(ngModel)]="dna " (keyup)="getBasecount() "></textarea>
             </div>
             <div class=" container row">
-                <mat-radio-group [(ngModel)]=" packsize " labelPosition="before ">
+                <mat-radio-group (change)="format( packsize, breakline)" [(ngModel)]="packsize" labelPosition="before ">
                     Pack Size:<br/>
-                    <mat-radio-button checked=true value="1 ">1</mat-radio-button>
+                    <mat-radio-button checked value="0 "> 0</mat-radio-button>
+                    <mat-radio-button value="1 ">1</mat-radio-button>
                     <mat-radio-button value="3 ">3</mat-radio-button>
                     <mat-radio-button value="10 ">10</mat-radio-button>
                 </mat-radio-group>
                 <br/>
-                <mat-radio-group [(ngModel)]="breakline " labelPosition="before ">
+                <mat-radio-group (change)="format(packsize, breakline) " [(ngModel)]="breakline " labelPosition="before ">
                     Break Line:<br/>
+                    <mat-radio-button checked=true value="0 "> 0</mat-radio-button>
                     <mat-radio-button value="30 " checked=true> 30</mat-radio-button>
                     <mat-radio-button value="60 "> 60</mat-radio-button>
                     <mat-radio-button value="120 "> 120</mat-radio-button>
@@ -110,12 +110,12 @@
             </div>
         </mat-tab>
 
-        <mat-tab class="card" label="Base Count">
-            <div style="padding-bottom:100px;" class="card-body container-fluid ">
+        <mat-tab class="card " label="Base Count ">
+            <div style="padding-bottom:100px; " class="card-body container-fluid ">
                 <h4>Nitrogenous Base Count</h4>
 
-                <section class="col-md-6">
-                    <table class="table">
+                <section class="col-md-6 ">
+                    <table class="table ">
                         <tr>
                             <th>AT%(<strong>W</strong>eak-2H bonds): </th>
                             <th>GC%(<strong>S</strong>trong-3H bonds): </th>
@@ -126,9 +126,9 @@
                         </tr>
                     </table>
                 </section>
-                <section class="col-md-6">
+                <section class="col-md-6 ">
 
-                    <table class="table">
+                    <table class="table ">
                         <tr>
                             <td># {{basecount.aCount}}</td>
                             <td>Adenine (<strong>A</strong>)</td>
@@ -160,9 +160,7 @@
     </mat-tab-group>
 </mat-sidenav-container>
 
-<div class="d-sm-none container-fluid ">
 
-</div>
 
 
 

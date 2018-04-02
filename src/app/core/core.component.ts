@@ -14,6 +14,7 @@ import {MatSnackBar, MatDialog} from '@angular/material';
 export class CoreComponent implements OnInit {
   dna: string;
   dnaoutput: string;
+  tmpoutput: string;
   sequence: Sequence;
   basecount: Basecount;
   events = [];
@@ -59,6 +60,7 @@ constructor() {
     if(this.dna.match(/[^AUTCGautcg ]/)){
       if(confirm("Invalid Characters")){
         this.dnaoutput = this.sequence.format(this.sequence.check(this.dna),this.packsize,this.breakline);
+        this.tmpoutput = this.sequence.check(this.dna)
         this.converter = "String Cleanup";
       } else {
         this.clearInput();
@@ -66,6 +68,8 @@ constructor() {
     } else {
         this.dnaoutput = this.sequence.format(this.sequence.check(this.dna),this.packsize,this.breakline);
         this.converter = "String Cleanup";
+        this.tmpoutput = this.sequence.check(this.dna)
+
     }  
  
   }
@@ -73,20 +77,26 @@ constructor() {
 dnarna() {
     this.dnaoutput = this.sequence.format(this.sequence.dnarna(this.dna), this.packsize, this.breakline);
     this.converter = "DNA <-> RNA";
+    this.tmpoutput = this.sequence.dnarna(this.dna)
+
   }
 
   reverse() {
     this.dnaoutput = this.sequence.format(this.sequence.reverseSeq(this.dna), this.packsize, this.breakline);
     this.converter = "Reverse DNA"
+    this.tmpoutput = this.sequence.reverseSeq(this.dna);
   }
 
   complement() {
     if(this.dna.includes("U") || this.dna.includes("u")){
       this.converter = "Complement RNA"
       this.dnaoutput = this.sequence.format(this.sequence.complementRNA(this.dna), this.packsize, this.breakline);
+      this.tmpoutput = this.sequence.complementRNA(this.dna)
+
     } else {
     this.dnaoutput = this.sequence.format(this.sequence.complementSeq(this.dna), this.packsize, this.breakline);
     this.converter = "Complement DNA"
+    this.tmpoutput = this.sequence.complementSeq(this.dna);
     }
   }
 
@@ -94,10 +104,13 @@ dnarna() {
     if(this.dna.includes("U") || this.dna.includes("u")) {
       this.dnaoutput = this.sequence.format(this.sequence.reverseComplementRNA(this.dna), this.packsize, this.breakline);
       this.converter = "Reverse & Complement RNA"
+      this.tmpoutput = this.sequence.reverseComplementRNA(this.dna)
+      
 
     } else {
       this.dnaoutput = this.sequence.format(this.sequence.reverseComplement(this.dna), this.packsize, this.breakline);
       this.converter = "Reverse & Complement DNA"
+      this.tmpoutput = this.sequence.reverseComplement(this.dna)
     }
 
   }
@@ -105,7 +118,9 @@ dnarna() {
   strToAmino() {
     try{
     this.dnaoutput = this.sequence.format(this.sequence.strToAmino(this.dna, 0), 0,this.breakline);
-    this.converter = "Generate 3-key Amino Acids"      
+    this.converter = "Generate 3-key Amino Acids"              
+    this.tmpoutput = this.sequence.strToAmino(this.dna, 0)
+
     } catch(e){
 
     }
@@ -114,21 +129,18 @@ dnarna() {
   strTo1mino() {
     try{
     this.dnaoutput = this.sequence.format(this.sequence.strToAmino(this.dna, 1), this.packsize, this.breakline);
-    this.converter = "Generate 1-key Amino Acids"
+    this.converter = "Generate 1-key Amino Acids"   
+    this.tmpoutput = this.sequence.strToAmino(this.dna, 1);
     } catch(e){
       
     }
 
   }
-/*
+
   format(pack, line) {
-    //this.dnaoutput = this.sequence.check(this.dna);
-    this.dnaoutput = this.sequence.format(this.dnaoutput, pack, line);
-    this.breakline = this.sequence.breakline;
-    this.packsize = this.sequence.packsize;
-    
+    this.dnaoutput = this.sequence.format(this.tmpoutput, pack, line);
   }
-*/
+
 
 
 clearInput(){
