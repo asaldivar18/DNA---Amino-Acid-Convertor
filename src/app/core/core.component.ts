@@ -83,7 +83,7 @@ dnarna() {
 
   reverse() {
     this.dnaoutput = this.sequence.format(this.sequence.reverseSeq(this.dna), this.packsize, this.breakline);
-    this.converter = "Reverse DNA"
+    this.converter = "Reverse"
     this.tmpoutput = this.sequence.reverseSeq(this.dna);
   }
 
