@@ -16,6 +16,8 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatTableModule} from '@angular/material/table';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+
 
 
 
@@ -38,7 +40,8 @@ import {MatTableModule} from '@angular/material/table';
     MatIconModule,
     MatChipsModule,
     MatSnackBarModule,
-    MatDialogModule
+    MatDialogModule,
+    MatButtonToggleModule
   ],
 
   providers: [],
