@@ -42,7 +42,7 @@ constructor() {
 
   getBasecount(){
     try{
-      if(this.dna.match(/[^AUTCGautcg ]/))
+      if(this.dna.match(/[^AUTCGautcg \n]/))
     {
       document.getElementById("warning").style.visibility = "visible";
     } else {

@@ -79,8 +79,8 @@ export class Sequence {
 	}
 
     reverseSeq(sequence:string) {
-      const input = sequence.split('').reverse().join('');
-      return this.check(input);
+      const input = this.check(sequence.split('').reverse().join(''));
+      return input;
     }
 
     complementSeq(sequence) {

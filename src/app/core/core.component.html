@@ -103,9 +103,41 @@
 
         <mat-tab class="card " label="Base Count ">
             <div style="padding-bottom:100px; " class="card-body container-fluid ">
-                <h4>Nitrogenous Base Count</h4>
+              
 
                 <section class="col-md-6 ">
+                        <h4>Nitrogenous Base Count</h4>
+                        <table class="table">
+                            <tr>
+                                <td># {{basecount.aCount}}</td>
+                                <td>Adenine (<strong>A</strong>)</td>
+                            </tr>
+                            <tr>
+                                <td># {{basecount.tCount}}</td>
+                                <td>Thymine (<strong>T</strong>)</td>
+                            </tr>
+                            <tr>
+                            <td>{{basecount.weak_AVG}}</td>
+                                <td>AT% (<strong>W</strong>eak-2H bonds)</td>
+                            </tr>
+                            <tr>
+                                <td># {{basecount.gCount}}</td>
+                                <td>Guanine (<strong>G</strong>)</td>
+                            </tr>
+                            <tr>
+                                <td># {{basecount.cCount}}</td>
+                                <td>Cytosine (<strong>C</strong>)</td>
+                            </tr>
+                            <tr>
+                                <td>{{basecount.strong_AVG}}</td>
+                                    <td>GC% (<strong>S</strong>trong-3H bonds)</td>
+                                </tr>
+                            <tr>
+                                <td>{{basecount.aCount +basecount.tCount +basecount.gCount +basecount.cCount}}</td>
+                                <td>total # ACGT (a<strong>N</strong>y base)</td>
+                            </tr>
+                        </table>
+                    <!--
                     <table class="table ">
                         <tr>
                             <th>AT%(<strong>W</strong>eak-2H bonds): </th>
@@ -143,7 +175,7 @@
                             <td><strong> # nitrogenous bases:</strong></td>
                             <td>{{basecount.aCount +basecount.tCount +basecount.gCount +basecount.cCount}}</td>
                         </tr>
-                    </table>
+                    </table>-->
                 </section>
             </div>
         </mat-tab>
